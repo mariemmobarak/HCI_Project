@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Learning Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <!-- === LEFT SIDE: WELCOME AND ACTIVITY MENU IMAGE === -->
+        <div class="left-panel">
+            <div class="welcome-logo-row">
+                <h1 class="title-welcome">WELCOME TO</h1>
+                <!-- Logo -->
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+            </div>
+
+            <!-- Activity Menu Image -->
+            <img src="/assets/landing.png" 
+                 alt="Floral menu for reading stories, games, and learning" 
+                 class="activity-img"
+            >
+        </div>
+
+        <div class="login-card-container">
+            
+            <img src="/assets/kidsImage.png" 
+                 alt="Playful kids characters illustration" 
+                 class="peeking-kids-img hidden-on-mobile"
+            >
+
+            <div class="login-card">
+                <h2 class="login-title">USER LOGIN</h2>
+                <form id="login-form">
+
+                    <div class="input-group">
+                        <div class="input-group-icon">
+                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="username" placeholder="username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-icon">
+                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V9a2 2 0 014 0v2"></path>
+                            </svg>
+                        </div>
+                        <input type="password" id="password" placeholder="password" required>
+                    </div>
+                    
+                    <button type="submit" class="login-button">Login</button>
+
+                    <div id="message-box"></div>
+
+                    <div class="link-group">
+                        <a href="#" class="forgot-link">forgot password?</a>
+                        <p>No account? <a href="#" class="signup-link">Click to sign up</a></p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

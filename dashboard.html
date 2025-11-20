@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Learning Dashboard</title>
+    
+    <!-- Link to external CSS file for all styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        
+        <!-- TOP BAR: Logo and Avatar -->
+        <header class="dashboard-header">
+            <div class="dashboard-logo">
+                <a href="dashboard.html" title="Go to Home">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+                </a>
+            </div>
+            <h1 class="dashboard-title">
+                WHAT ARE WE LEARNING TODAY?
+            </h1>
+
+            <!-- Avatar Image (clickable) -->
+            <a href="#" id="avatar-link" class="avatar-link" title="User Profile">
+                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
+                >
+            </a>
+        </header>
+
+        <main class="subject-menu">
+            
+            <a href="#" id="english-link" class="subject-link subject-english" title="English Lessons">
+                <img src="/assets/english.png" alt="English Cloud" class="subject-cloud-img"
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x120/ffffff/1a4046?text=ENGLISH'"
+                >
+            </a>
+
+            <a href="#" class="subject-link subject-science" title="Science Experiments">
+                <img src="/assets/science.png" alt="Science Cloud" class="subject-cloud-img"
+                     onclick="alert('Loading Science Experiments!'); return false;"
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x120/e84393/1a4046?text=SCIENCE'"
+                >
+            </a>
+
+            <a href="#" id="math-link" class="subject-link subject-maths" title="Maths Challenges">
+                <img src="/assets/maths.png" alt="Maths Cloud" class="subject-cloud-img"
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x120/ffb85f/1a4046?text=MATHS'"
+                >
+            </a>
+
+            <a href="#" class="subject-link subject-francais" title="French Language">
+                <img src="/assets/francais.png" alt="Francais Cloud" class="subject-cloud-img"
+                     onclick="alert('Loading Francais Lessons!'); return false;"
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x120/ff6f2d/1a4046?text=FRANCAIS'"
+                >
+            </a>
+            
+            <a href="#" class="subject-link subject-arabic" title="Arabic Language">
+                <img src="/assets/arabic.png" alt="Arabic Cloud" class="subject-cloud-img"
+                    onclick="alert('Loading Arabic Lessons!'); return false;"
+                    onerror="this.onerror=null; this.src='https://placehold.co/200x120/ff6f2d/1a4046?text=ARABIC'"
+                >
+            </a>
+
+        </main>
+    </div>
+    <script src="dashboard.js"></script> 
+</body>
+</html>

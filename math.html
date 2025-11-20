@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math - Multiplication</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="math-body">
+    <div class="math-container">
+        <header class="dashboard-header">
+            <div class="dashboard-logo">
+                <a href="dashboard.html" title="Go to Dashboard">
+                    <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image"
+>
+                </a>
+            </div>
+
+            <img src="/assets/multiplicationImage.png" alt="Multiplication Title" class="lesson-title-image">
+            
+            <a href="#" class="avatar-link" title="User Profile">
+                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
+>
+            </a>
+        </header>
+
+        <main class="main-lesson-area">
+            <div id="lesson-content" class="lesson-content-wrapper">
+                <img src="/assets/mult.png" alt="Multiplication Lesson Content" class="math-lesson-image">
+            </div>
+            
+            
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.6rem;">
+                <button id="take-quiz-button" class="quiz-button" aria-controls="quiz-container" aria-expanded="false">
+                    Take Quiz <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                </button>
+            </div>
+
+
+        <section id="quiz-container" class="quiz-container hidden" aria-hidden="true">
+            <div class="progress-wrapper">
+                <div class="progress-text" id="progress-text">Question 1 of 5</div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+
+    <div class="question-card">
+        <div id="question-text" class="question-text">3 × 4 = ?</div>
+
+        <div class="answer-input-container">
+            <input id="answer-input" type="number" inputmode="numeric" aria-label="Answer" 
+                   placeholder="Type your answer" class="answer-input">
+            <button id="submit-answer-button" class="quiz-button-submit" aria-label="Submit answer">Submit</button>
+        </div>
+
+        <div id="feedback-message" class="feedback hidden" role="status" aria-live="polite"></div>
+    </div>
+</section>
+
+<section id="result-screen" class="result-screen hidden" aria-hidden="true">
+    <div class="result-content">
+        <div class="grade-display-container">
+            Grade: <span id="grade-display" class="grade-display" aria-live="polite"></span>
+        </div>
+        <div id="score-summary" class="score-summary"></div>
+        <div id="result-message" class="result-message"></div>
+        <div>
+            <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Quiz</button>
+        </div>
+    </div>
+</section>
+            <div id="custom-alert-box" style="display: none;"></div>
+        </main>
+    </div>
+
+    <script src="math.js"></script>
+</body>
+</html>

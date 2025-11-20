@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading - The Little Bear</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="reading-body">
+
+    <div class="reading-container">
+        
+        <header class="dashboard-header">
+            <div class="dashboard-logo">
+                <a href="dashboard.html" title="Go to Dashboard">
+                    <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+                </a>
+            </div>
+
+            <img src="/assets/reading.png" alt="Reading Title" class="reading-title-img">
+
+            <a href="#" id="avatar-link" class="avatar-link" title="User Profile">
+                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
+>
+            </a>
+        </header>
+
+        <main class="reading-content-area">
+            
+            <div class="open-book-container">
+                <img src="/assets/book.png" alt="Hands holding open book" class="hands-book-img">
+                
+            </div>
+
+            <button id="read-along-button" class="read-along-button">
+                Read Along?
+            </button>
+        </main>
+    </div>
+
+
+    <div id="video-modal" class="video-modal hidden" aria-hidden="true">
+    <div class="video-modal-content" role="dialog" aria-modal="true">
+        <button class="close-button" id="video-close" aria-label="Close">&times;</button>
+        <video id="read-along-video" width="800" controls playsinline>
+            <source id="read-along-source" src="/assets/reading.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    </div>
+    
+    <script src="reading.js"></script>
+
+</body>
+</html>
