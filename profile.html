@@ -9,7 +9,11 @@
 </head>
 <body>
     <!-- Logo outside container -->
-    <img src="/assets/HClogo.png" alt="Kids Acid Logo" class="logo-top-left">
+    <div class="dashboard-logo">
+        <a href="dashboard.html" title="Go to Home">
+        <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-top-left">
+        </a>
+    </div>
 
     <div class="container">
         <!-- Avatar -->
@@ -22,13 +26,32 @@
 
         <!-- Options -->
         <div class="options">
-            <button onclick="changeFont()">Change Font</button>
-            <button onclick="homePage()">Go to Homepage</button>
-            <button onclick="editAvatar()">Edit my Avatar</button>
-            <button onclick="logout()">Logout</button>
-        </div>
+    <button onclick="changeFont()" class="option-btn">
+        <img src="/assets/icons/font.png" class="option-icon" width="28px" height="28px">
+        Change Font
+    </button>
 
-       
+    <button onclick="homePage()" class="option-btn">
+        <img src="/assets/icons/home.png" class="option-icon" width="28px" height="28px">
+        Go to Homepage
+    </button>
+
+    <button onclick="editAvatar()" class="option-btn">
+        <img src="/assets/icons/edit.webp" class="option-icon" width="28px" height="28px">
+        Edit my Avatar
+    </button>
+
+    <button onclick="playFidgetSpinner()" class="option-btn">
+        <img src="/assets/icons/spinner.png" class="option-icon" width="28px" height="28px">
+        Try Fidget Spinner
+    </button>
+
+    <button onclick="logout()" class="option-btn">
+        <img src="/assets/icons/logout.webp" class="option-icon" width="28px" height="28px">
+        Logout
+    </button>
+</div>
+
        
     </div>
 

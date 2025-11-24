@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidget Spinner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #BEE0E3;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .spinner-container:hover:not(.spinning) {
+            transform: scale(1.05);
+        }
+
+        .spinner-container.spinning {
+            cursor: not-allowed;
+        }
+
+        .fidget-spinner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .spinner-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #2d3748;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        .spinner-center::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #4a5568;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .spinner-blade {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                        inset 0 -2px 5px rgba(0, 0, 0, 0.2),
+                        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            transform-origin: center center;
+        }
+
+        .blade1 {
+            transform: translate(-50%, -50%) translateY(-75px);
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        }
+
+        .blade2 {
+            transform: translate(-50%, -50%) rotate(120deg) translateY(-75px);
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        }
+
+        .blade3 {
+            transform: translate(-50%, -50%) rotate(240deg) translateY(-75px);
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .instruction.hidden {
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(1800deg);
+            }
+        }
+
+        .fidget-spinner.spinning {
+            animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+    </style>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <div class="dashboard-logo">
+        <a href="dashboard.html" title="Go to Home">
+        <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-top-left">
+        </a>
+    </div>
+
+    <div class="spinner-container" id="spinnerContainer">
+        <div class="fidget-spinner" id="fidgetSpinner">
+            <div class="spinner-blade blade1"></div>
+            <div class="spinner-blade blade2"></div>
+            <div class="spinner-blade blade3"></div>
+            <div class="spinner-center"></div>
+        </div>
+        <div class="instruction" id="instruction">Click to Spin!</div>
+    </div>
+
+    <script>
+        const spinnerContainer = document.getElementById('spinnerContainer');
+        const fidgetSpinner = document.getElementById('fidgetSpinner');
+        const instruction = document.getElementById('instruction');
+        let isSpinning = false;
+
+        spinnerContainer.addEventListener('click', function() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinnerContainer.classList.add('spinning');
+            fidgetSpinner.classList.add('spinning');
+            instruction.classList.add('hidden');
+            
+            setTimeout(function() {
+                fidgetSpinner.classList.remove('spinning');
+                spinnerContainer.classList.remove('spinning');
+                isSpinning = false;
+                instruction.classList.remove('hidden');
+                
+                // Reset the rotation
+                fidgetSpinner.style.transform = 'rotate(0deg)';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

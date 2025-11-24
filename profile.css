@@ -38,9 +38,9 @@ body {
     content: '';
     position: absolute;
     top: -40px; 
-    left: -40px;
-    width: 180%; 
-    height:120%;
+    left: -220px;
+    width: 300%; 
+    height:110%;
     background-image: url('/assets/border.png'); 
     background-size: 100% 100%; 
     background-repeat: no-repeat; 
@@ -64,7 +64,7 @@ body {
 }
 
 .name-image {
-    width: 110%;
+    width: 130%;
     max-width: 250px;
     margin: 15px 0;
     object-fit: contain;
@@ -80,7 +80,7 @@ body {
 .options button {
     padding: 10px 15px;
     border-radius: 10px;
-    color: white;
+    color: black;
     border: 2px solid var(--kids-accent);
     background-color: var(--kids-accent) ;
     box-shadow: 6px 6px 0 0 var(--kids-dark);
@@ -93,4 +93,55 @@ body {
     box-shadow: 8px 8px 0 0 var(--kids-dark);
 }
 
+/* Cute, friendly Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
 
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 300px;
+    align-items: center;
+}
+
+/* Kid-friendly button style */
+.option-btn {
+    width: 80%;
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    
+    background: #ffdb6e;
+    border: none;
+    border-radius: 18px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+
+    cursor: pointer;
+    box-shadow: 0 4px 0 #c9a54d;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.option-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 #c9a54d;
+}
+
+.option-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #c9a54d;
+}
+
+/* Icons */
+.option-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}

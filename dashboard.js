@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const scienceLink = document.getElementById('science-link');
+    if (scienceLink) {
+        scienceLink.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            console.log('Redirecting to Science page...');
+            // Redirect to the new science page
+            window.location.href = 'science.html';
+        });
+    }
+
     const mathLink = document.getElementById('math-link');
     if (mathLink) {
         mathLink.addEventListener('click', (e) => {
@@ -30,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Handle Other Subject Clicks (Currently placeholders)
-    document.querySelectorAll('.subject-link:not(#english-link):not(#math-link)').forEach(link => {
+    document.querySelectorAll('.subject-link:not(#english-link):not(#science-link):not(#math-link)').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const title = e.currentTarget.title;

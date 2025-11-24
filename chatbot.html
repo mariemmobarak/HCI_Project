@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CHATBOT PAGE */
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            height: 70vh;
+            background: white;
+            border: 4px solid var(--kids-dark);
+            border-radius: 1rem;
+            box-shadow: 10px 10px 0 0 var(--kids-dark);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .chat-header {
+            background: var(--kids-accent);
+            color: white;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            border-bottom: 4px solid var(--kids-dark);
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: var(--kids-blue);
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 0.75rem;
+        }
+
+        .message.bot .bubble {
+            background: white;
+            border: 3px solid var(--kids-dark);
+        }
+
+        .message.child {
+            flex-direction: row-reverse;
+        }
+
+        .message.child .bubble {
+            background: var(--kids-accent);
+            color: white;
+            border: 3px solid var(--kids-dark);
+        }
+
+        .bubble {
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            max-width: 70%;
+            font-weight: 600;
+            line-height: 1.3;
+            box-shadow: 4px 4px 0 var(--kids-dark);
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid var(--kids-dark);
+            object-fit: cover;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 1rem;
+            background: var(--gray-light);
+            border-top: 3px solid var(--kids-dark);
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            border: 2px solid var(--gray-medium);
+            font-size: 1rem;
+        }
+
+        .chat-input:focus {
+            border-color: var(--kids-accent);
+            box-shadow: 0 0 0 4px rgba(0,184,217,0.25);
+            outline: none;
+        }
+
+        .send-button {
+            background: var(--kids-accent);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            font-weight: 800;
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 4px 4px 0 var(--kids-dark);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .send-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 7px 7px 0 var(--kids-dark);
+        }
+
+        .send-button:active {
+            transform: translate(0, 0);
+            box-shadow: 3px 3px 0 var(--kids-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Home">
+            <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+            </a>
+        </div>
+        <!-- Avatar Image (clickable) -->
+        <a href="profile.html" id="avatar-link" class="avatar-link" title="User Profile">
+            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
+            >
+        </a>
+    </header>
+
+<div class="chat-container">
+    <div class="chat-header">
+        Marioumi’s Chatbot
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+
+        <!-- Initial bot message -->
+        <div class="message bot">
+            <img src="assets/chatbot.webp" class="avatar">
+            <div class="bubble">
+                Hello Marioumi, you've learnt a lot today! Do you need any help?
+            </div>
+        </div>
+
+    </div>
+
+    <div class="chat-input-area">
+        <input id="chatInput" class="chat-input" type="text" placeholder="Type your message...">
+        <button class="send-button" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+
+<script>
+    function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const messages = document.getElementById("chatMessages");
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        // Child message
+        const childDiv = document.createElement("div");
+        childDiv.className = "message child";
+        childDiv.innerHTML = `
+            <img src="assets/girlAvatar.png" class="avatar">
+            <div class="bubble">${text}</div>
+        `;
+        messages.appendChild(childDiv);
+
+        input.value = "";
+        messages.scrollTop = messages.scrollHeight;
+
+        // Bot auto-reply
+        setTimeout(() => {
+            const botDiv = document.createElement("div");
+            botDiv.className = "message bot";
+            botDiv.innerHTML = `
+                <img src="assets/chatbot.webp" class="avatar">
+                <div class="bubble">Thank you! I'm here to help you anytime 🌟</div>
+            `;
+            messages.appendChild(botDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }, 500);
+    }
+</script>
+
+</body>
+</html>

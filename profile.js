@@ -14,6 +14,10 @@ function logout() {
     window.location.href = 'login.html';
 }
 
+function playFidgetSpinner() {
+    window.location.href = 'fidget_spinner.html';
+}
+
 // Redirect from other pages when avatar is clicked
 document.querySelectorAll('.avatar-link').forEach(avatar => {
     avatar.addEventListener('click', () => {

@@ -97,7 +97,7 @@
         }
 
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.0rem;
             position: relative;
         }
 
@@ -111,6 +111,16 @@
             padding-left: 0.75rem;
             pointer-events: none;
         }
+
+        .input-group .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 0.3px;
+        }
+
 
         .input-group input {
             background-color: var(--gray-light);
@@ -237,7 +247,7 @@
         .password-requirements {
             font-size: 0.75rem;
             color: #6b7280;
-            margin-top: -1rem;
+            margin-top: -0.8rem;
             margin-bottom: 1rem;
             padding-left: 0.5rem;
         }
@@ -286,13 +296,12 @@
                     </div>
 
                     <div class="input-group">
-                        <span>  Child's Date of Birth</span>
                         <div class="input-group-icon">
                             <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <input type="date" id="dob" placeholder="date of birth" required>
+                        <input type="text" id="dob" placeholder="  Child's Date of Birth" onfocus="this.type='date'" required>
                     </div>
 
                     <div class="input-group">
@@ -302,7 +311,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V9a2 2 0 014 0v2"></path>
                             </svg>
                         </div>
-                        <input type="password" id="password" placeholder="  password" required>
+                        <input type="password" id="password" placeholder="  Password" required>
                     </div>
                     <div class="password-requirements">
                         Password must be at least 6 characters
@@ -315,7 +324,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V9a2 2 0 014 0v2"></path>
                             </svg>
                         </div>
-                        <input type="password" id="confirm-password" placeholder="  confirm password" required>
+                        <input type="password" id="confirm-password" placeholder="  Confirm Password" required>
                     </div>
                     
                     <button type="submit" class="signup-button">Sign Up</button>
