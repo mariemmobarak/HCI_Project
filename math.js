@@ -1,6 +1,7 @@
 let currentQuestionIndex = 0;
 let score = 0;
 const TOTAL_QUESTIONS = 5;
+let speakerTimeout = null;
 
 const quizQuestions = [
     { num1: 3, num2: 4, answer: 12 },
@@ -16,13 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const takeQuizButton = document.getElementById('take-quiz-button');
     const submitAnswerButton = document.getElementById('submit-answer-button');
     const retakeQuizButton = document.getElementById('retake-quiz-button');
+    const playSoundButton = document.getElementById('play-sound-button');
+    const speakerIndicator = document.getElementById('speaker-indicator');
+    const listenButton = document.getElementById('record-answer-button');
+    const listenIndicator = document.getElementById('listener-indicator');
 
     const avatarLink = document.querySelector('.avatar-link');
-        if (avatarLink) {
-            avatarLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = 'profile.html';
-            });
+    if (avatarLink) {
+        avatarLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'profile.html';
+        });
     }
 
     if (takeQuizButton) {
@@ -35,6 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
         retakeQuizButton.addEventListener('click', resetQuiz);
     }
     
+    // Handle speaker button click
+    if (playSoundButton) {
+        playSoundButton.addEventListener('click', () => {
+            showSpeakerIndicator();
+        });
+    }
+    if (listenButton) {
+        listenButton.addEventListener('click', () => {
+            showListenerIndicator();
+        });
+    }
+    
     document.getElementById('answer-input')?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -42,9 +59,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
- 
+    function showSpeakerIndicator() {
+        if (!speakerIndicator) return;
+        
+        // Clear any existing timeout
+        if (speakerTimeout) {
+            clearTimeout(speakerTimeout);
+        }
+        
+        // Show the indicator
+        speakerIndicator.classList.remove('hidden');
+        
+        // Hide after 10 seconds
+        speakerTimeout = setTimeout(() => {
+            speakerIndicator.classList.add('hidden');
+        }, 10000);
+    }
+
+    function showListenerIndicator() {
+        if (!listenIndicator) return;
+        
+        // Clear any existing timeout
+        if (speakerTimeout) {
+            clearTimeout(speakerTimeout);
+        }
+        
+        // Show the indicator
+        listenIndicator.classList.remove('hidden');
+        
+        // Hide after 10 seconds
+        speakerTimeout = setTimeout(() => {
+            listenIndicator.classList.add('hidden');
+        }, 3000);
+    }
+
     function startQuiz() {
         // Hide lesson, show quiz
+        quizContainer.removeAttribute('inert');
         lessonContent.classList.add('hidden');
         quizContainer.classList.remove('hidden');
         document.getElementById('result-screen').classList.add('hidden');
@@ -76,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         progressText.textContent = `Question ${currentQuestionIndex + 1} of ${TOTAL_QUESTIONS}`;
     }
 
-
     function checkAnswer() {
         const answerInput = document.getElementById('answer-input');
         const feedbackMessage = document.getElementById('feedback-message');
@@ -95,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
             score++;
             feedbackMessage.textContent = 'Correct!';
             feedbackMessage.classList.add('feedback-correct');
+            const hooraySound = new Audio('/assets/hooray.mp3');
+            hooraySound.play().catch(e => console.log('Audio playback failed:', e));
             setTimeout(nextQuestion, 800);
         } else {
             feedbackMessage.textContent = `Wrong! The answer is ${question.answer}.`;
@@ -113,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showResult();
         }
     }
-
 
     function showResult() {
         quizContainer.classList.add('hidden');
@@ -158,10 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             retakeButton.classList.remove('hidden');
             resultScreen.classList.remove('hidden'); 
         }
-        
-
     }
-
 
     function resetQuiz() {
         document.getElementById('result-screen').classList.add('hidden');

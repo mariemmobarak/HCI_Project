@@ -1,4 +1,5 @@
 # HCI_Project
+
 # Running the Project
 
 ## 1. Install Live Server (VS Code Extension)
@@ -14,8 +15,14 @@ This project requires the **Live Server** extension to run the HTML files correc
 
 After installing Live Server:
 
-1. Open the project folder in VS Code  
-2. Right-click on `login.html`  
+1. Open the project folder in VS Code
+2. Right-click on `login.html`
 3. Select **Open with Live Server**
 
 The project will automatically open in your browser.
+
+### HTD Link
+
+```
+https://www.figma.com/board/J9vBGjFhHIQkktNsVxeNrL/HTA---HTD--Community-?node-id=0-1&p=f&t=qvMfVsZJFOUfW0mw-0
+```

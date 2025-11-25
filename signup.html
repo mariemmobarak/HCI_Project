@@ -34,7 +34,8 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
-            padding-top: 2rem;
+            padding-top: 0rem;
+            margin-top: -1.5cm;
         }
 
         @media (min-width: 1024px) {
@@ -260,9 +261,8 @@
         <!-- === LEFT SIDE: WELCOME AND ACTIVITY MENU IMAGE === -->
         <div class="left-panel">
             <div class="welcome-logo-row">
-                <h1 class="title-welcome">JOIN US AT</h1>
-                <!-- Logo - Using placeholder since we don't have the actual image -->
                 <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+                                <h1 class="title-welcome">JOIN US NOW!</h1>
             </div>
 
             <!-- Activity Menu Image - Using placeholder -->
@@ -389,12 +389,13 @@
             }
 
             console.log(`Creating account with Username: ${username}, Email: ${email}`);
-            showMessage('Account created successfully! Redirecting to login...', 'success');
+            showMessage('Account created successfully! Redirecting to dashboard...', 'success');
 
             setTimeout(() => {
                 // In a real app, this would navigate to login.html
                 // For demo purposes, we'll just show a message
-                alert('In a real app, you would be redirected to the login page now!');
+                window.location.href = 'dashboard.html';
+                // alert('In a real app, you would be redirected to the login page now!');
             }, 1500); 
         });
 
