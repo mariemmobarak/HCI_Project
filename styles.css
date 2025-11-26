@@ -323,14 +323,12 @@ body {
     margin: 0;          /* remove any margin that could affect placement */
 }
 
-
 .subject-menu .subject-link {
     position: relative; 
     margin: 2rem auto;
     max-width: 200px;
 }
 
-/* Desktop Positioning */
 /* Desktop Positioning */
 @media (min-width: 1024px) {
     .subject-menu .subject-link {
@@ -354,8 +352,8 @@ body {
         width: 330px;   /* bigger */
     }
     .subject-francais {
-        right: 12%;
-        top: 38%;
+        right: 7%;
+        top: 36%;
         width: 340px;   /* bigger */
     }
     .subject-arabic {
