@@ -407,7 +407,7 @@ body {
     position: absolute;
     width: 100%;
     max-width: 900px;
-    bottom: 5.3%;
+    bottom: 0;
     height: auto;
     display: flex;
     justify-content: center;

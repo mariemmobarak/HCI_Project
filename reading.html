@@ -9,59 +9,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="math-body">
-
-    <div class="reading-container">
-        
-        <header class="dashboard-header">
-            <div class="dashboard-logo">
-                <a href="dashboard.html" title="Go to Dashboard">
-                    <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
-                </a>
-            </div>
-
-            <img src="/assets/reading.png" alt="Reading Title" class="lesson-title-image">
-
-            <a href="#" id="avatar-link" class="avatar-link" title="User Profile">
-                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Dashboard">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
             </a>
-        </header>
+        </div>
 
-        <main class="reading-content-area">
-            
-            <div class="open-book-container">
-                <img src="/assets/book.png" alt="Hands holding open book" class="hands-book-img">
-                
-            </div>
+        <img src="/assets/reading.png" alt="Reading Title" class="lesson-title-image">
 
-            <button id="read-along-button" class="read-along-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="ml-2">
-                <path d="M4 4h6a2 2 0 0 1 2 2v12a1 1 0 0 0-1.2-.98L4 18V4z"/>
-                <path d="M20 4h-6a2 2 0 0 0-2 2v12a1 1 0 0 1 1.2-.98L20 18V4z"/>
-                </svg>
-                Read Along?
-            </button>
-        </main>
+        <a href="#" id="avatar-link" class="avatar-link" title="User Profile">
+            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+        </a>
+    </header>
+
+    <div class="main-lesson-area">
+        <div class="open-book-container">
+            <img src="/assets/book.png" alt="Hands holding open book" class="hands-book-img">
+        </div>
+
+        <button id="read-along-button" class="read-along-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="ml-2">
+            <path d="M4 4h6a2 2 0 0 1 2 2v12a1 1 0 0 0-1.2-.98L4 18V4z"/>
+            <path d="M20 4h-6a2 2 0 0 0-2 2v12a1 1 0 0 1 1.2-.98L20 18V4z"/>
+            </svg>
+            Read Along?
+        </button>
+
+        <a href="chatbot.html" class="chatbot-button">
+            <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">
+        </a>
     </div>
-
 
     <div id="video-modal" class="video-modal hidden" aria-hidden="true">
-    <div class="video-modal-content" role="dialog" aria-modal="true">
-        <button class="close-button" id="video-close" aria-label="Close">&times;</button>
-        <video id="read-along-video" width="800" controls playsinline>
-            <source id="read-along-source" src="/assets/reading.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    </div>
-
-    <a href="chatbot.html" class="chatbot-button">
-        <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">
-    </a>
-    
+        <div class="video-modal-content" role="dialog" aria-modal="true">
+            <button class="close-button" id="video-close" aria-label="Close">&times;</button>
+            <video id="read-along-video" width="800" controls playsinline>
+                <source id="read-along-source" src="/assets/reading.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>    
     <script src="reading.js"></script>
-
 </body>
 </html>
