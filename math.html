@@ -7,36 +7,44 @@
     <title>Math - Multiplication</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="math-body">
-    <div class="math-container">
-        <header class="dashboard-header">
-            <div class="dashboard-logo">
-                <a href="dashboard.html" title="Go to Dashboard">
-                    <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
-                </a>
-            </div>
-
-            <img src="/assets/multiplicationImage.png" alt="Multiplication Title" class="lesson-title-image">
-            
-            <a href="#" class="avatar-link" title="User Profile">
-                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Dashboard">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
             </a>
-        </header>
+        </div>
 
-        <main class="main-lesson-area">
-            <div id="lesson-content" class="lesson-content-wrapper">
-                <img src="/assets/mult.png" alt="Multiplication Lesson Content" class="math-lesson-image">
-            </div>
-            
-            
-            <div style="display:flex; flex-direction:column; align-items:center; gap:.6rem;">
-                <button id="take-quiz-button" class="quiz-button" aria-controls="quiz-container" aria-expanded="false">
-                    Take Quiz <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
-                </button>
-            </div>
+        <img src="/assets/multiplicationImage.png" alt="Multiplication Title" class="lesson-title-image">
+        
+        <a href="#" class="avatar-link" title="User Profile">
+            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+        </a>
+    </header>
 
+    <div class="main-lesson-area">
+        <div id="lesson-content" class="lesson-content-wrapper">
+            <img src="/assets/mult.png" alt="Multiplication Lesson Content" class="math-lesson-image">
+        </div>
+        
+        <!--<div style="display:flex; flex-direction:column; align-items:center; gap:.6rem;">
+            <button id="take-quiz-button" class="quiz-button" aria-controls="quiz-container" aria-expanded="false">
+                Take Quiz <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </button>
+        </div>-->
 
-        <section id="quiz-container" class="quiz-container hidden" inert>
+        <button id="take-quiz-button" class="read-along-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="ml-2">
+            <rect x="3" y="3" width="14" height="14" rx="2" />
+            <path d="M10 8a2 2 0 1 1 2 2c-.5.5-1 .9-1 2" />
+            <circle cx="10" cy="14" r="1" />
+            </svg>
+            Take Quiz?
+        </button>
+
+        <div id="quiz-container" class="quiz-container hidden" inert>
             <div class="progress-wrapper">
                 <div class="progress-text" id="progress-text">Question 1 of 5</div>
                 <div class="progress-bar">
@@ -44,69 +52,65 @@
                 </div>
             </div>
 
-    <div class="question-card">
-        <div class="question-text-container" style="display: flex; align-items: center; gap: 8px; justify-content: space-between;">
-            <button id="record-answer-button" aria-label="Record answer" style="background: none; border: none; cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3z"></path>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                    <line x1="12" y1="19" x2="12" y2="23"></line>
-                    <line x1="8" y1="23" x2="16" y2="23"></line>
-                </svg>
-            </button>
+            <div class="question-card">
+                <div class="question-text-container" style="display: flex; align-items: center; gap: 8px; justify-content: space-between;">
+                    <button id="record-answer-button" aria-label="Record answer" style="background: none; border: none; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                    </button>
 
-            <div id="question-text" class="question-text">3 × 4 = ?</div>
-            <button id="play-sound-button" aria-label="Play question" style="background: none; border: none; cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    <path d="M19.07 4.93a9 9 0 0 1 0 14.14"></path>
-                </svg>
-            </button>
+                    <div id="question-text" class="question-text">3 × 4 = ?</div>
+                    <button id="play-sound-button" aria-label="Play question" style="background: none; border: none; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <path d="M19.07 4.93a9 9 0 0 1 0 14.14"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="answer-input-container">
+                    <input id="answer-input" type="number" inputmode="numeric" aria-label="Answer" 
+                        placeholder="Type your answer" class="answer-input">
+                    <button id="submit-answer-button" class="quiz-button-submit" aria-label="Submit answer">Submit</button>
+                </div>
+
+                <div id="feedback-message" class="feedback hidden" role="status" aria-live="polite"></div>
+            </div>
         </div>
 
-        <div class="answer-input-container">
-            <input id="answer-input" type="number" inputmode="numeric" aria-label="Answer" 
-                placeholder="Type your answer" class="answer-input">
-            <button id="submit-answer-button" class="quiz-button-submit" aria-label="Submit answer">Submit</button>
+        <section id="result-screen" class="result-screen hidden" aria-hidden="true">
+            <div class="result-content">
+                <div class="grade-display-container">
+                    Grade: <span id="grade-display" class="grade-display" aria-live="polite"></span>
+                </div>
+                <div id="score-summary" class="score-summary"></div>
+                <div id="result-message" class="result-message"></div>
+                <div>
+                    <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Quiz</button>
+                </div>
+            </div>
+        </section>
+        <div id="custom-alert-box" style="display: none;"></div>
+        <a href="chatbot.html" class="chatbot-button">
+            <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">
+        </a>
+        <div id="speaker-indicator" class="speaker-indicator hidden">
+            <img src="/assets/speaking.png" alt="Speaking" class="speaker-indicator-img">
         </div>
 
-        <div id="feedback-message" class="feedback hidden" role="status" aria-live="polite"></div>
-    </div>
-</section>
-
-<section id="result-screen" class="result-screen hidden" aria-hidden="true">
-    <div class="result-content">
-        <div class="grade-display-container">
-            Grade: <span id="grade-display" class="grade-display" aria-live="polite"></span>
+        <div id="listener-indicator" class="listener-indicator hidden">
+            <img src="/assets/listening.png" alt="Speaking" class="listener-indicator-img">
         </div>
-        <div id="score-summary" class="score-summary"></div>
-        <div id="result-message" class="result-message"></div>
-        <div>
-            <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Quiz</button>
-        </div>
-    </div>
-</section>
-            <div id="custom-alert-box" style="display: none;"></div>
-        </main>
     </div>
 
     <!-- <div class="fun-gif-container">
         <img src="/assets/juggling.gif" alt="Fun Animation" class="fun-gif">
-    </div> -->
-
-    <a href="chatbot.html" class="chatbot-button">
-        <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">
-    </a>
-
-    <!-- Speaker indicator image (bottom right) -->
-    <div id="speaker-indicator" class="speaker-indicator hidden">
-        <img src="/assets/speaking.png" alt="Speaking" class="speaker-indicator-img">
-    </div>
-
-    <div id="listener-indicator" class="listener-indicator hidden">
-        <img src="/assets/listening.png" alt="Speaking" class="listener-indicator-img">
-    </div>
+    </div> -->    
 
     <script src="math.js"></script>
 </body>

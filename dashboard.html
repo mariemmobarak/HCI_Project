@@ -10,29 +10,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="dashboard-body">
-
-    <div class="dashboard-container">
-        
-        <!-- TOP BAR: Logo and Avatar -->
-        <header class="dashboard-header">
-            <div class="dashboard-logo">
-                <a href="dashboard.html" title="Go to Home">
-                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
-                </a>
-            </div>
-
-            <img src="/assets/dashboard_title.png" alt="Dashboard Title" class="lesson-title-image">
-
-
-            <!-- Avatar Image (clickable) -->
-            <a href="profile.html" id="avatar-link" class="avatar-link" title="User Profile">
-                <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
-                >
+<body>        
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Home">
+            <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
             </a>
-        </header>
+        </div>
 
-        <main class="subject-menu">
+        <img src="/assets/dashboard_title.png" alt="Dashboard Title" class="lesson-title-image">
+
+        <a href="profile.html" id="avatar-link" class="avatar-link" title="User Profile">
+            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img"
+            >
+        </a>
+    </header>
+
+    <div class="main-lesson-area">
+
+        <div class="subject-menu">
             
             <a href="#" id="english-link" class="subject-link subject-english" title="English Lessons">
                 <img src="/assets/english.png" alt="English Cloud" class="subject-cloud-img"
@@ -65,8 +61,7 @@
                     onerror="this.onerror=null; this.src='https://placehold.co/200x120/ff6f2d/1a4046?text=ARABIC'"
                 >
             </a>
-
-        </main>
+        </div>
     </div>
     <script src="dashboard.js"></script> 
 </body>
