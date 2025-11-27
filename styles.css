@@ -236,7 +236,8 @@ body {
 }
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
+  justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem; 
@@ -258,12 +259,14 @@ body {
     object-fit: contain;
 }
 .dashboard-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--kids-dark);
-  text-align: left;
-  font-size: 3rem;
+    margin-left: 30%;
+    margin-top: 30px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--kids-dark);
+    font-size: 3rem;
+
+    text-align: justify;
 }
 .avatar-link {
     width: 70px;
@@ -343,27 +346,27 @@ body {
     
     .subject-english {
         left: 8%;
-        top: 30%;
+        top: 50%;
         width: 320px;   /* bigger */
     }
     .subject-maths {
         left: 28%;
-        top: 58%;
+        top: 78%;
         width: 350px;   /* bigger */
     }
     .subject-science {
         left: 43%;
-        top: 18%;
+        top: 38%;
         width: 330px;   /* bigger */
     }
     .subject-francais {
         right: 7%;
-        top: 36%;
+        top: 56%;
         width: 340px;   /* bigger */
     }
     .subject-arabic {
         right: 26%;
-        top: 63%;
+        top: 83%;
         width: 380px;   /* biggest */
     }
 }
@@ -536,6 +539,7 @@ body {
 .lesson-title-image {
     width: 70%;
     max-height: 100px;
+    max-width: 300px;
     height: auto;
     display: block;
     padding: 0.5rem;
