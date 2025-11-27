@@ -241,13 +241,16 @@ body {
   gap: 1rem;
   margin-bottom: 2rem; 
   padding: 0 1rem;
-  position: relative;
+  position: fixed;
+  top: 0;
 }
 .dashboard-logo {
     display: flex;
     gap: 1rem;
     height: 7.5rem;
     margin-top: 10px;
+    position: fixed;
+    left: 20px;
 }
 .dashboard-logo .logo-image {
     height: 10rem;
@@ -263,14 +266,16 @@ body {
   font-size: 3rem;
 }
 .avatar-link {
-  width: 70px;
-  height: 70px;
-  box-sizing: border-box;
-  border: 3px solid var(--kids-dark);
-  border-radius: 50%;
-  overflow: hidden;
-  transition: transform 0.2s;
-  margin: 0;
+    width: 70px;
+    height: 70px;
+    box-sizing: border-box;
+    border: 3px solid var(--kids-dark);
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin: 0;
+    position: fixed;
+    right: 20px;
 }
 .avatar-link:hover {
     transform: scale(1.05);
@@ -530,7 +535,7 @@ body {
 
 .lesson-title-image {
     width: 70%;
-    max-width: 700px;
+    max-height: 100px;
     height: auto;
     display: block;
     padding: 0.5rem;
