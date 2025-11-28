@@ -389,20 +389,16 @@
             }
 
             console.log(`Creating account with Username: ${username}, Email: ${email}`);
-            showMessage('Account created successfully! Redirecting to dashboard...', 'success');
+            showMessage('Account created successfully! Redirecting to login...', 'success');
 
             setTimeout(() => {
-                // In a real app, this would navigate to login.html
-                // For demo purposes, we'll just show a message
-                window.location.href = 'dashboard.html';
-                // alert('In a real app, you would be redirected to the login page now!');
+                window.location.href = 'login.html';
             }, 1500); 
         });
 
         // Navigate to login page
         document.getElementById('login-link').addEventListener('click', function(event) {
             event.preventDefault();
-            // In a real app: window.location.href = 'login.html';
             alert('In a real app, you would be redirected to the login page now!');
         });
 

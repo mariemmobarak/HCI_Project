@@ -214,7 +214,6 @@ body {
     border-radius: 0.5rem;
     width: 450px;
 }
-/* Only show the peeking kids on large screens */
 .hidden-on-mobile {
     display: none;
 }
@@ -303,7 +302,7 @@ body {
 }
 
 .subject-link {
-    position: absolute;          /* keep absolute placement */
+    position: absolute;          
     display: block;
     text-align: center;
     text-decoration: none;
@@ -323,12 +322,12 @@ body {
 }
 
 .subject-cloud-img {
-    width: 160%;        /* fill the container width */
+    width: 160%;       
     height: auto;
     display: block;
     object-fit: contain;
     filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.3));
-    margin: 0;          /* remove any margin that could affect placement */
+    margin: 0;         
 }
 
 .subject-menu .subject-link {
@@ -337,7 +336,6 @@ body {
     max-width: 200px;
 }
 
-/* Desktop Positioning */
 @media (min-width: 1024px) {
     .subject-menu .subject-link {
         position: absolute;
@@ -347,27 +345,27 @@ body {
     .subject-english {
         left: 8%;
         top: 50%;
-        width: 320px;   /* bigger */
+        width: 320px;   
     }
     .subject-maths {
         left: 28%;
         top: 78%;
-        width: 350px;   /* bigger */
+        width: 350px;   
     }
     .subject-science {
         left: 43%;
         top: 38%;
-        width: 330px;   /* bigger */
+        width: 330px;   
     }
     .subject-francais {
         right: 7%;
         top: 56%;
-        width: 340px;   /* bigger */
+        width: 340px;  
     }
     .subject-arabic {
         right: 26%;
         top: 83%;
-        width: 380px;   /* biggest */
+        width: 380px;   
     }
 }
 
@@ -433,7 +431,7 @@ body {
     box-shadow: 6px 6px 0 0 var(--kids-dark);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 20; /* Ensure it's above the book */
+    z-index: 20; 
 }
 .read-along-button:hover {
     transform: translate(-3px, -3px);
@@ -610,7 +608,6 @@ body {
     box-shadow: 0 0 0 6px rgba(0,184,217,0.18);
 }
 
-/* Icon spacing if using Font Awesome — small helper class */
 .ml-2 {
     margin-left: 0.5rem;
 }
@@ -651,7 +648,6 @@ body {
         justify-items: stretch;
     }
 
-    /* put quiz button to the right side but keep it visually near the content */
     .quiz-button {
         align-self: start;
         margin-left: 1rem;
@@ -907,7 +903,7 @@ body {
 }
 
 .chatbot-icon {
-    width: 120px;     /* adjust size */
+    width: 120px;     
     height: auto;
     cursor: pointer;
     transition: transform 0.25s ease, filter 0.25s ease;
@@ -1010,20 +1006,20 @@ body {
 
 .fun-gif-container {
     position: fixed;
-    bottom: 250px; /* adjust to sit above chatbot button */
-    left: 180px;    /* horizontal position */
+    bottom: 250px; 
+    left: 180px;    
     width: 250px;
     height: 250px;
     z-index: 999;
-    border-radius: 20px; /* gently rounded corners */
-    overflow: hidden;    /* ensures the image is clipped */
+    border-radius: 20px; 
+    overflow: hidden;    
 }
 
 .fun-gif {
     width: 100%;
     height: 100%;
-    object-fit: cover;    /* fills container nicely */
+    object-fit: cover;    
     pointer-events: none;
-    border-radius: inherit; /* matches container's corners */
+    border-radius: inherit;
 }
 

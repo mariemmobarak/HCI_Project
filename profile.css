@@ -19,9 +19,9 @@ body {
 
 .logo-top-left {
     position: absolute;
-    top: 20px;
+    top: -18px;
     left: 20px;
-    width: 120px;
+    height: 10rem;
 }
 
 .container {
@@ -93,7 +93,6 @@ body {
     box-shadow: 8px 8px 0 0 var(--kids-dark);
 }
 
-/* Cute, friendly Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
 
 .options {
@@ -105,7 +104,6 @@ body {
     align-items: center;
 }
 
-/* Kid-friendly button style */
 .option-btn {
     width: 80%;
     max-width: 350px;
@@ -139,7 +137,6 @@ body {
     box-shadow: 0 2px 0 #c9a54d;
 }
 
-/* Icons */
 .option-icon {
     width: 20px;
     height: 20px;

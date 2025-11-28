@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         retakeQuizButton.addEventListener('click', resetQuiz);
     }
     
-    // Handle speaker button click
     if (playSoundButton) {
         playSoundButton.addEventListener('click', () => {
             showSpeakerIndicator();
@@ -62,15 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function showSpeakerIndicator() {
         if (!speakerIndicator) return;
         
-        // Clear any existing timeout
         if (speakerTimeout) {
             clearTimeout(speakerTimeout);
         }
         
-        // Show the indicator
         speakerIndicator.classList.remove('hidden');
         
-        // Hide after 10 seconds
         speakerTimeout = setTimeout(() => {
             speakerIndicator.classList.add('hidden');
         }, 10000);
@@ -79,22 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function showListenerIndicator() {
         if (!listenIndicator) return;
         
-        // Clear any existing timeout
         if (speakerTimeout) {
             clearTimeout(speakerTimeout);
         }
         
-        // Show the indicator
         listenIndicator.classList.remove('hidden');
         
-        // Hide after 10 seconds
         speakerTimeout = setTimeout(() => {
             listenIndicator.classList.add('hidden');
         }, 3000);
     }
 
     function startQuiz() {
-        // Hide lesson, show quiz
         quizContainer.removeAttribute('inert');
         lessonContent.classList.add('hidden');
         quizContainer.classList.remove('hidden');
@@ -117,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const answerInput = document.getElementById('answer-input');
 
         document.getElementById('question-text').textContent = `${question.num1} × ${question.num2} = ?`;
-        answerInput.value = ''; // Clear input field
-        answerInput.focus(); // Focus the input field
+        answerInput.value = ''; 
+        answerInput.focus(); 
         document.getElementById('feedback-message').classList.add('hidden');
 
         // Update Progress Bar

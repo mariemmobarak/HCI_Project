@@ -1,5 +1,5 @@
 document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
     
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -9,7 +9,6 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     messageBox.classList.remove('message-error', 'message-success');
 
     if (!username || !password) {
-        // If either field is empty after trimming whitespace
         showMessage('You must fill in both the username and password fields!', 'error');
         return;
     }
