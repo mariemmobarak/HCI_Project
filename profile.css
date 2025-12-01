@@ -37,12 +37,12 @@ body {
 .container::before {
     content: '';
     position: absolute;
-    top: -40px; 
-    left: -220px;
+    top: -35px; 
+    left: -150px;
     width: 300%; 
     height:110%;
     background-image: url('/assets/border.png'); 
-    background-size: 100% 100%; 
+    background-size: 80% 100%; 
     background-repeat: no-repeat; 
     z-index: -1;
 }

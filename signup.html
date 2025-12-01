@@ -150,20 +150,26 @@
             font-size: 1.25rem;
             padding: 0.75rem 1.25rem;
             text-align: center;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s ease, box-shadow 0.25s ease, opacity .2s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
             margin-bottom: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             border: none;
             cursor: pointer;
         }
 
         .signup-button:hover {
-            opacity: 0.9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .signup-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
         }
 
         .signup-button:focus {
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 184, 217, 0.5);
+            box-shadow: 0 0 0 4px rgba(0, 184, 217, 0.35);
         }
 
         .message-box {
@@ -171,27 +177,32 @@
             font-size: 0.875rem;
             margin-bottom: 1rem;
             transition: height 0.3s, opacity 0.3s;
-            height: 0;
+            max-height: 0;
             overflow: hidden;
         }
 
         .message-error {
-            color: #dc2626;
-            background-color: #fee2e2;
-            border: 1px solid #f87171;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            height: auto;
+            color: #b91c1c;
+            background: #ffe5e5;
+            border-left: 4px solid #ef4444;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.1);
+            max-height: 100px;
         }
 
         .message-success {
-            color: #16a34a;
-            background-color: #dcfce7;
-            border: 1px solid #4ade80;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            height: auto;
+            color: #166534;
+            background: #e7fce8;
+            border-left: 4px solid #22c55e;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(34, 197, 94, 0.1);
+            max-height: 100px;
         }
+
 
         .link-group {
             text-align: center;
@@ -258,14 +269,12 @@
 
     <div class="main-container">
         
-        <!-- === LEFT SIDE: WELCOME AND ACTIVITY MENU IMAGE === -->
         <div class="left-panel">
             <div class="welcome-logo-row">
                 <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
                                 <h1 class="title-welcome">JOIN US NOW!</h1>
             </div>
 
-            <!-- Activity Menu Image - Using placeholder -->
             <div style="width: 130%; height: 400px;  border-radius: 1rem; margin-top: 2rem; display: flex; align-items: center; justify-content: center; color: var(--kids-dark); font-weight: 700;">
                 <img src="/assets/preview.png" alt="Preview" width="400px">
             </div>
