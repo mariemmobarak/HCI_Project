@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math - Multiplication</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .carousel { position: relative; max-width: 900px; margin: 0 auto; }
+        .slides { position: relative; height: 360px; overflow: hidden; border-radius: 12px; }
+        .slide { position: fixed; inset: 0; opacity: 0; transition: opacity .5s ease; display: flex; align-items:center; justify-content:center; }
+        .slide img { width: 60%; height: 60%; object-fit: contain; display: block; }
+        .slide[aria-hidden="false"] { opacity: 1; z-index: 1; }
+        .carousel-controls { position: absolute; top: 110%; left: 0; right: 0; display:flex; justify-content:space-between; transform: translateY(-50%); pointer-events: none; }
+        .carousel-controls button { pointer-events: auto; background: rgba(0,0,0,.45); border: none; color: #fff; width:40px; height:40px; border-radius:999px; cursor:pointer; }
+        .carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 20px; display:flex; gap:8px; }
+        .carousel-dots button { width:10px; height:10px; border-radius:50%; border: none; background: rgba(255,255,255,.5); cursor:pointer; }
+        .carousel-dots button[aria-pressed="true"] { background: #fff; }
+        @media (max-width:700px) { .slides { height: 220px; } }
+    </style>
 </head>
 <body>
     <header class="dashboard-header">
@@ -23,10 +36,30 @@
     </header>
 
     <div class="main-lesson-area">
-        <div id="lesson-content" class="lesson-content-wrapper">
-            <img src="/assets/mult.png" alt="Multiplication Lesson Content" class="math-lesson-image">
+        <!-- Carousel placed inside the lesson content area. Replace or add images in the slides below. -->
+        <div id="lesson-content" class="lesson-content-wrapper carousel" tabindex="0" aria-roledescription="carousel">
+            <div class="slides" id="slides">
+                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" data-index="0" aria-hidden="false">
+                    <img src="/assets/mult.png" alt="Multiplication Lesson Content">
+                </div>
+                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" data-index="1" aria-hidden="true">
+                    <img src="/assets/mult2.png" alt="Multiplication Example 2">
+                </div>
+                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" data-index="2" aria-hidden="true">
+                    <img src="/assets/mult3.png" alt="Multiplication Example 3">
+                </div>
+            </div>
+
+
+            <div class="carousel-controls">
+                <button id="carousel-prev" aria-label="Previous slide">◀</button>
+                <button id="carousel-next" aria-label="Next slide">▶</button>
+            </div>
+
+
+            <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Slide controls"></div>
         </div>
-        
+            
 
         <button id="take-quiz-button" class="read-along-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
@@ -78,7 +111,7 @@
             </div>
         </div>
 
-        <section id="result-screen" class="result-screen hidden" aria-hidden="true">
+        <div id="result-screen" class="result-screen hidden" aria-hidden="true">
             <div class="result-content">
                 <div class="grade-display-container">
                     Grade: <span id="grade-display" class="grade-display" aria-live="polite"></span>
@@ -86,10 +119,10 @@
                 <div id="score-summary" class="score-summary"></div>
                 <div id="result-message" class="result-message"></div>
                 <div>
-                    <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Quiz</button>
+                    <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Lesson</button>
                 </div>
             </div>
-        </section>
+        </div>
         <div id="custom-alert-box" style="display: none;"></div>
         <a href="chatbot.html" class="chatbot-button">
             <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">

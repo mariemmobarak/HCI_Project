@@ -1,3 +1,67 @@
+document.addEventListener('DOMContentLoaded', () => {
+const slides = Array.from(document.querySelectorAll('.slide'));
+const prevBtn = document.getElementById('carousel-prev');
+const nextBtn = document.getElementById('carousel-next');
+const dotsContainer = document.getElementById('carousel-dots');
+let current = 0;
+const count = slides.length;
+const intervalMs = 4000;
+let timer = null;
+
+
+// create dots
+slides.forEach((s,i)=>{
+const b = document.createElement('button');
+b.setAttribute('role','tab');
+b.setAttribute('aria-pressed', i===0 ? 'true' : 'false');
+b.setAttribute('aria-label', `Go to slide ${i+1}`);
+b.addEventListener('click', ()=> goTo(i));
+dotsContainer.appendChild(b);
+});
+const dots = Array.from(dotsContainer.children);
+
+
+function show(idx){
+slides.forEach((s,i)=>{
+const visible = i===idx;
+s.setAttribute('aria-hidden', visible ? 'false' : 'true');
+dots[i].setAttribute('aria-pressed', visible ? 'true' : 'false');
+});
+current = idx;
+}
+function goTo(i){
+i = (i + count) % count;
+show(i);
+restart();
+}
+prevBtn?.addEventListener('click', ()=> goTo(current-1));
+nextBtn?.addEventListener('click', ()=> goTo(current+1));
+
+
+// keyboard on carousel container
+const carousel = document.getElementById('lesson-content');
+carousel?.addEventListener('keydown', (e)=>{
+if (e.key === 'ArrowLeft') prevBtn?.click();
+if (e.key === 'ArrowRight') nextBtn?.click();
+});
+
+
+function start(){ timer = setInterval(()=> goTo(current+1), intervalMs); }
+function stop(){ clearInterval(timer); timer = null; }
+function restart(){ stop(); start(); }
+
+
+carousel?.addEventListener('mouseenter', stop);
+carousel?.addEventListener('mouseleave', start);
+carousel?.addEventListener('focusin', stop);
+carousel?.addEventListener('focusout', start);
+
+
+// init
+show(0);
+start();
+});
+
 let currentQuestionIndex = 0;
 let score = 0;
 const TOTAL_QUESTIONS = 5;
@@ -141,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hooraySound.play().catch(e => console.log('Audio playback failed:', e));
             setTimeout(nextQuestion, 800);
         } else {
-            feedbackMessage.textContent = `Wrong! The answer is ${question.answer}.`;
+            feedbackMessage.textContent = `Not quite, but you're learning! Remember: ${question.num1} × ${question.num2} means adding ${question.num2} a total of ${question.num1} times, which gives ${question.answer}.`;
             feedbackMessage.classList.add('feedback-wrong');
-            setTimeout(nextQuestion, 1500); 
+            setTimeout(nextQuestion, 4500); 
         }
     }
 

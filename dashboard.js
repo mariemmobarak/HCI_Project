@@ -34,7 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.subject-link:not(#english-link):not(#science-link):not(#math-link)').forEach(link => {
+    const arabicLink = document.getElementById('arabic-link');
+    if (arabicLink) {
+        arabicLink.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            console.log('Redirecting to Arabic page...');
+            window.location.href = 'arabic.html';
+        });
+    }
+    const germanLink = document.getElementById('german-link');
+    if (germanLink) {
+        germanLink.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            console.log('Redirecting to German page...');
+            window.location.href = 'german.html';
+        });
+    }
+    document.querySelectorAll('.subject-link:not(#english-link):not(#science-link):not(#math-link):not(#arabic-link):not(#german-link)').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const title = e.currentTarget.title;
