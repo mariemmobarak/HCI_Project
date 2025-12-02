@@ -35,7 +35,8 @@
             align-items: flex-start;
             justify-content: center;
             padding-top: 0rem;
-            margin-top: -1.5cm;
+            margin-top: 0;
+            
         }
 
         @media (min-width: 1024px) {
@@ -58,7 +59,7 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            margin-top: -3rem;
+            margin-top: 0;
             transform: scale(1.2);
         }
 
@@ -74,7 +75,7 @@
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            margin-top: -3rem;
+            margin-top: 0;
         }
 
         .signup-card {
@@ -286,68 +287,106 @@
                 <h2 class="signup-title">CREATE ACCOUNT</h2>
                 <form id="signup-form">
 
-                    <div class="input-group">
-                        <div class="input-group-icon">
-                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </div>
-                        <input type="text" id="username" placeholder="  Child's Name" required>
-                    </div>
+                    <h3>Child's Info</h3>
 
-                    <div class="input-group">
-                        <div class="input-group-icon">
-                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <input type="email" id="email" placeholder="  Email" required>
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-group-icon">
-                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <input type="text" id="dob" placeholder="  Child's Date of Birth" onfocus="this.type='date'" required>
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-group-icon">
-                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V9a2 2 0 014 0v2"></path>
-                            </svg>
-                        </div>
-                        <input type="password" id="password" placeholder="  Password" required>
-                    </div>
-                    <div class="password-requirements">
-                        Password must be at least 6 characters
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-group-icon">
-                            <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V9a2 2 0 014 0v2"></path>
-                            </svg>
-                        </div>
-                        <input type="password" id="confirm-password" placeholder="  Confirm Password" required>
-                    </div>
-                    
-                    <button type="submit" class="signup-button">Sign Up</button>
-
-                    <div id="message-box" class="message-box"></div>
-
-                    <div class="link-group">
-                        <p>Already have an account? <a href="login.html" class="login-link">Click to login</a></p>
-                    </div>
-
-                </form>
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- child name icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="child-username" placeholder="  Child's Name" required>
             </div>
-        </div>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- date of birth icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="child-dob" placeholder="  Child's Date of Birth" onfocus="this.type='date'" required>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- password icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V9a2 2 0 014 0v2"></path>
+                    </svg>
+                </div>
+                <input type="password" id="child-password" placeholder="  Child's Password" required>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- password icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V9a2 2 0 014 0v2"></path>
+                    </svg>
+                </div>
+                <input type="password" id="child-confirm-password" placeholder="  Confirm Child's Password" required>
+            </div>
+            <!-- PARENT'S INFO -->
+            <h3>Parent's Info</h3>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- parent username icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="parent-username" placeholder="  Parent's Username" required>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- parent password icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V9a2 2 0 014 0v2"></path>
+                    </svg>
+                </div>
+                <input type="password" id="parent-password" placeholder="  Parent's Password" required>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-icon">
+                    <!-- parent confirm password icon -->
+                    <svg width="20" height="20" fill="none" stroke="#333" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V9a2 2 0 014 0v2"></path>
+                    </svg>
+                </div>
+                <input type="password" id="parent-confirm-password" placeholder="  Confirm Parent's Password" required>
+            </div>
+
+            <button type="submit" class="signup-button">Sign Up</button>
+
+            <div id="message-box" class="message-box"></div>
+
+            <div class="link-group">
+                <p>Already have an account? <a href="login.html" class="login-link">Click to login</a></p>
+            </div>
+
+        </form>
     </div>
+</div>
 
     <script>
         document.getElementById('signup-form').addEventListener('submit', function(event) {

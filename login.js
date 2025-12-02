@@ -22,7 +22,11 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     showMessage('Login successful! Redirecting...', 'success');
 
     setTimeout(() => {
-        window.location.href = 'dashboard.html';
+        if (username === "marwa.shahin") {
+            window.location.href = "parent.html";
+        } else {
+            window.location.href = "dashboard.html";
+        }
     }, 500); 
 });
 

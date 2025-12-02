@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/HClogo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .parent-container {
+            position: fixed;
+            top: 6rem;                  
+            left: 50%;                  
+            transform: translateX(-47%); 
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .card {
+            background: white;
+            border: 4px solid var(--kids-dark);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 8px 8px 0 0 var(--kids-dark);
+        }
+        .child-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--kids-dark);
+            margin-bottom: 1rem;
+        }
+        .child-avatar img { width:100%; height:100%; object-fit:cover; }
+        .stat { font-weight: 900; font-size: 1.6rem; color: var(--kids-dark); }
+        .stat-sub { color: #4b5563; font-weight:700; }
+        .lesson-list { list-style: none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.5rem; }
+        .lesson-list li { display:flex; justify-content:space-between; align-items:center; padding:0.35rem 0.5rem; border-radius:0.5rem; }
+        .grade-badge { background: var(--kids-accent); color: white; padding:0.25rem 0.6rem; border-radius:999px; font-weight:900; }
+        .login-center { max-width:420px; margin:4rem auto; }
+        .hidden { display:none !important; }
+        @media (max-width: 900px) {
+            .parent-container { grid-template-columns: 1fr; margin-top: 8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Dashboard">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+            </a>
+        </div>
+
+        <div class="lesson-title-image" style="display:flex; align-items:center; justify-content:center;">
+            <h1 style="margin:0; font-size:2.3rem; font-weight:800; color:var(--kids-dark);">Dashboard</h1>
+        </div>
+        
+
+        <a href="parent-profile.html" id="avatar-link" class="avatar-link" title="User Profile">
+            <img src="/assets/mom.png" alt="Parent Avatar" class="avatar-img">
+        </a>
+    </header>
+
+    <div class="main-container">
+        <div id="dashboard-section" >
+            <div class="parent-container">
+                <div>
+                    <div class="card" style="text-align:center;">
+                        <div class="child-avatar">
+                            <img src="/assets/girlAvatar.png" alt="Child Avatar">
+                        </div>
+                        <div class="stat">Marioumi</div>
+                        <div class="stat-sub">Age 8 • Year 3</div>
+                        <hr style="margin:0.75rem 0; border:none; border-top:2px solid #e6eef0;">
+                        <div style="display:flex; gap:0.5rem; justify-content:center;">
+                            <div style="text-align:center;">
+                                <div class="stat">23</div>
+                                <div class="stat-sub">Lessons Completed</div>
+                            </div>
+                            <div style="text-align:center;">
+                                <div class="stat">82%</div>
+                                <div class="stat-sub">Average Grade</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:1rem;">
+                        <h3 style="margin-top:0;">Recent Activity</h3>
+                        <ul class="lesson-list">
+                            <li><span>Reading • The Little Bear</span><span class="grade-badge">A</span></li>
+                            <li><span>Math • Multiplication</span><span class="grade-badge">B+</span></li>
+                            <li><span>German • Basics</span><span class="grade-badge">B</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card" style="margin-top: 0.5rem;">
+                        <h3 style="margin-top:0;">Lessons' progress</h3>
+                        <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;
+                                        padding:0.6rem; background:#f8fafb; border-radius:0.5rem;">
+                                <div>English: Reading</div>
+                                <div class="stat-sub">Completed</div>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;
+                                        padding:0.6rem; background:#f8fafb; border-radius:0.5rem;">
+                                <div>Math: Multiplication</div>
+                                <div class="stat-sub">Completed</div>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;
+                                        padding:0.6rem; background:#f8fafb; border-radius:0.5rem;">
+                                <div>Deutsch: Basics</div>
+                                <div class="stat-sub">Completed</div>
+                            </div>   
+                            <div style="display:flex; justify-content:space-between; align-items:center;
+                                        padding:0.6rem; background:#fff7ed; border-radius:0.5rem;">
+                                <div>Science: Zoo Tour</div>
+                                <div class="stat-sub">In Progress</div>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;
+                                        padding:0.6rem; background:#fff7ed; border-radius:0.5rem;">
+                                <div>Arabic: Language</div>
+                                <div class="stat-sub">In Progress</div>
+                            </div>                         
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:1.7rem;">
+                        <h3 style="margin-top:0;">Quiz Grades</h3>
+                        <table style="width:100%; border-collapse:collapse; font-weight:800;">
+                            <thead>
+                                <tr style="text-align:left; color:#374151;"><th>Quiz</th><th>Score</th><th>Date</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Math</td><td>4/5 (80%)</td><td>2025-11-28</td></tr>
+                                <tr><td>Reading </td><td>5/5 (100%)</td><td>2025-11-21</td></tr>
+                                <tr><td>Science</td><td>3/5 (60%)</td><td>2025-11-10</td></tr>
+                            </tbody>
+                        </table>
+                        <div style="margin-top:0.75rem; text-align:right;"><button id="export-report" class="quiz-button">Export Report</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            document.getElementById('export-report')?.addEventListener('click', function(){
+                alert('Exported a sample report (demo).');
+            });
+        })();
+    </script>
+</body>
+</html>

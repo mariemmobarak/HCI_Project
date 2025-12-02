@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/HClogo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --kids-blue: #BEE0E3;
+            --kids-dark: #1a4046;
+            --kids-accent: #0a92aab4;
+            --gray-light: #f9fafb;
+            --gray-medium: #d1d5db;
+        }
+
+        body {
+            background-color: var(--kids-blue);
+            font-family: 'Inter', sans-serif;
+            color: var(--kids-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            margin: 0;
+            position: relative;
+        }
+
+        .logo-top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .logo-top-left:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            padding: 40px 20px 60px 20px;
+            background-color: transparent;
+            border-radius: 15px;
+            overflow: visible;
+            border: 5px solid var(--kids-dark);
+            box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--kids-dark);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.5) translateY(8%);
+        }
+
+        .profile-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--kids-dark);
+            margin: 1rem 0 2rem 0;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            width: 300px;
+            align-items: center;
+        }
+
+        .option-btn {
+            width: 80%;
+            max-width: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding: 12px 18px;
+            background: var(--kids-accent);
+            border: none;
+            border-radius: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--kids-dark);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 var(--kids-dark);
+        }
+
+        .option-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--kids-dark);
+        }
+
+        .option-btn.logout-btn {
+            background: #dc2626;
+            color: white;
+            box-shadow: 0 4px 0 #7f1d1d;
+        }
+
+        .option-btn.logout-btn:hover {
+            box-shadow: 0 6px 0 #7f1d1d;
+        }
+
+        .option-btn.logout-btn:active {
+            box-shadow: 0 2px 0 #7f1d1d;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: static;
+            background: white;
+            border: 4px solid var(--kids-dark);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 8px 8px 0 0 var(--kids-dark);
+            width: calc(100% - 40px);
+            margin: 0.75rem auto 0.5rem auto;
+            box-sizing: border-box;
+            z-index: 1200;
+            text-align: left;
+        }
+
+        .dropdown-content.active {
+            display: block;
+        }
+
+        .dropdown-content h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--kids-dark);
+            border-bottom: 3px solid var(--kids-accent);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--kids-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--gray-medium);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--kids-accent);
+            box-shadow: 0 0 0 3px rgba(0, 184, 217, 0.25);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background: var(--kids-accent);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.7rem;
+            border-radius: 0.75rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 0 var(--kids-dark);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 0 var(--kids-dark);
+        }
+
+        .btn-submit:active {
+            transform: translate(0, 0);
+            box-shadow: 2px 2px 0 0 var(--kids-dark);
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: var(--gray-light);
+            color: var(--kids-dark);
+            border: 2px solid var(--kids-dark);
+            padding: 0.8rem 1rem;
+            border-radius: 0.75rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 0 var(--kids-dark);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-cancel:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 0 var(--kids-dark);
+        }
+
+        .btn-cancel:active {
+            transform: translate(0, 0);
+            box-shadow: 2px 2px 0 0 var(--kids-dark);
+        }
+
+        .message {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-weight: 700;
+            display: none;
+            text-align: center;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 2px solid #4ade80;
+            display: block;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 2px solid #f87171;
+            display: block;
+        }
+
+        .screentime-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+        }
+
+        .screentime-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .screentime-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .screentime-option label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+            font-weight: 700;
+        }
+
+        .close-dropdown {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--gray-light);
+            border: 2px solid var(--kids-dark);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .close-dropdown:hover {
+            background: var(--gray-medium);
+        }
+
+        @media (max-width: 768px) {
+            .avatar-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .options {
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .dropdown-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="parent.html" title="Go to Dashboard">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+            </a>
+        </div>
+
+        <div class="lesson-title-image" style="display:flex; align-items:center; justify-content:center;">
+            <h1 style="margin:0; font-size:2.3rem; font-weight:800; color:#ffffff00;">.</h1>
+        </div>
+        
+
+
+    </header>
+
+    <div class="container">
+
+        <div class="avatar-wrapper">
+            <img src="/assets/mom.png" alt="Parent Avatar">
+        </div>
+
+        <div class="profile-title">Marwa Shahin</div>
+
+        <div class="options">
+            <button class="option-btn" onclick="toggleDropdown('password-dropdown', this)">
+                <span>Change Password</span>
+                <span id="password-arrow">▼</span>
+            </button>
+
+            <button class="option-btn" onclick="toggleDropdown('child-password-dropdown', this)">
+                <span>Change Marioumi's Password</span>
+                <span id="child-arrow">▼</span>
+            </button>
+
+            <button class="option-btn" onclick="toggleDropdown('screentime-dropdown', this)">
+                <span>Set Screen Time Limit</span>
+                <span id="screentime-arrow">▼</span>
+            </button>
+
+            <button onclick="logout()" class="option-btn">
+                <img src="/assets/icons/logout.webp" class="option-icon" width="28px" height="28px">
+                Logout
+            </button>
+        </div>
+
+        <div class="dropdown-content" id="password-dropdown">
+            <h3>Change Your Password</h3>
+            <form id="change-password-form">
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" placeholder="Enter current password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm new password" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-submit">Update Password</button>
+                    <button type="reset" class="btn-cancel">Clear</button>
+                </div>
+                <div id="password-message" class="message"></div>
+            </form>
+            <button class="close-dropdown" onclick="closeDropdown('password-dropdown')">Close</button>
+        </div>
+
+        <div class="dropdown-content" id="child-password-dropdown">
+            <h3>Change Child's Password</h3>
+            <form id="change-child-password-form">
+                <div class="form-group">
+                    <label for="child-username">Child's Username</label>
+                    <input type="text" id="child-username" placeholder="Enter child's username" required>
+                </div>
+                <div class="form-group">
+                    <label for="child-new-password">New Password for Child</label>
+                    <input type="password" id="child-new-password" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group">
+                    <label for="child-confirm-password">Confirm New Password</label>
+                    <input type="password" id="child-confirm-password" placeholder="Confirm new password" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-submit">Update Child Password</button>
+                    <button type="reset" class="btn-cancel">Clear</button>
+                </div>
+                <div id="child-password-message" class="message"></div>
+            </form>
+            <button class="close-dropdown" onclick="closeDropdown('child-password-dropdown')">Close</button>
+        </div>
+
+        <div class="dropdown-content" id="screentime-dropdown">
+            <h3>Set Screen Time Limit</h3>
+            <form id="screentime-form">
+                <div class="screentime-options">
+                    <div class="screentime-option">
+                        <input type="radio" id="screentime-30" name="screentime" value="30" required>
+                        <label for="screentime-30">30 minutes per day</label>
+                    </div>
+                    <div class="screentime-option">
+                        <input type="radio" id="screentime-60" name="screentime" value="60" required>
+                        <label for="screentime-60">1 hour per day</label>
+                    </div>
+                    <div class="screentime-option">
+                        <input type="radio" id="screentime-90" name="screentime" value="90" required>
+                        <label for="screentime-90">1.5 hours per day</label>
+                    </div>
+                    <div class="screentime-option">
+                        <input type="radio" id="screentime-120" name="screentime" value="120" required>
+                        <label for="screentime-120">2 hours per day</label>
+                    </div>
+                    <div class="screentime-option">
+                        <input type="radio" id="screentime-unlimited" name="screentime" value="unlimited" required>
+                        <label for="screentime-unlimited">Unlimited</label>
+                    </div>
+                </div>
+                <div class="button-group" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn-submit">Save Screen Time Limit</button>
+                </div>
+                <div id="screentime-message" class="message"></div>
+            </form>
+            <button class="close-dropdown" onclick="closeDropdown('screentime-dropdown')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(id, btn) {
+            const dropdown = document.getElementById(id);
+            const container = document.querySelector('.container');
+            const isActive = dropdown.classList.contains('active');
+
+            // Close other dropdowns and restore container width
+            document.querySelectorAll('.dropdown-content').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('active');
+                    d.style.display = 'none';
+                    // move other dropdowns back to the end of container so DOM stays tidy
+                    container.appendChild(d);
+                }
+            });
+
+            if (isActive) {
+                closeDropdown(id);
+                return;
+            }
+
+            // Save original container inline width (only once)
+            if (!container.dataset.originalWidth) {
+                container.dataset.originalWidth = container.style.width || '';
+            }
+
+            // Move dropdown directly after the clicked button so it pushes content down
+            btn.insertAdjacentElement('afterend', dropdown);
+
+            // Show it in flow
+            dropdown.classList.add('active');
+            dropdown.style.display = 'block';
+
+            // Allow browser to render then measure
+            requestAnimationFrame(() => {
+                const dropdownWidth = dropdown.offsetWidth;
+                const contWidth = container.clientWidth;
+
+                // If the dropdown is wider than the container minus some padding, expand container width
+                const needed = dropdownWidth + 40; // 40px slack for borders/padding
+                if (needed > contWidth) {
+                    container.style.width = needed + 'px';
+                }
+            });
+        }
+
+        function closeDropdown(id) {
+            const d = document.getElementById(id);
+            const container = document.querySelector('.container');
+            if (d) {
+                d.classList.remove('active');
+                d.style.display = 'none';
+                // move it back to the end of container so structure stays predictable
+                container.appendChild(d);
+            }
+            // restore original container width if saved
+            if (container && container.dataset.originalWidth !== undefined) {
+                container.style.width = container.dataset.originalWidth || '';
+            }
+        }
+
+        document.getElementById('change-password-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const current = document.getElementById('current-password').value;
+            const newPass = document.getElementById('new-password').value;
+            const confirm = document.getElementById('confirm-password').value;
+            const msg = document.getElementById('password-message');
+
+            if (newPass.length < 6) {
+                msg.className = 'message error';
+                msg.textContent = 'New password must be at least 6 characters long.';
+                return;
+            }
+
+            if (newPass !== confirm) {
+                msg.className = 'message error';
+                msg.textContent = 'New passwords do not match!';
+                return;
+            }
+
+            msg.className = 'message success';
+            msg.textContent = 'Password updated successfully!';
+            this.reset();
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        });
+
+        document.getElementById('change-child-password-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('child-username').value;
+            const newPass = document.getElementById('child-new-password').value;
+            const confirm = document.getElementById('child-confirm-password').value;
+            const msg = document.getElementById('child-password-message');
+
+            if (newPass.length < 4) {
+                msg.className = 'message error';
+                msg.textContent = 'Child password must be at least 4 characters long.';
+                return;
+            }
+
+            if (newPass !== confirm) {
+                msg.className = 'message error';
+                msg.textContent = 'Passwords do not match!';
+                return;
+            }
+
+            msg.className = 'message success';
+            msg.textContent = `Password for "${username}" updated successfully!`;
+            this.reset();
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        });
+
+        document.getElementById('screentime-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selected = document.querySelector('input[name="screentime"]:checked');
+            const msg = document.getElementById('screentime-message');
+
+            if (selected.value === 'unlimited') {
+                msg.className = 'message success';
+                msg.textContent = 'Screen time limit removed. Your child has unlimited access.';
+            } else {
+                msg.className = 'message success';
+                msg.textContent = `Screen time limit set to ${selected.value} minutes per day.`;
+            }
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        });
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.option-btn') && !e.target.closest('.dropdown-content')) {
+                document.querySelectorAll('.dropdown-content.active').forEach(d => {
+                    closeDropdown(d.id);
+                });
+            }
+        });
+
+        // On window resize, restore container width so layout can adapt
+        window.addEventListener('resize', () => {
+            const container = document.querySelector('.container');
+            if (container && container.dataset.originalWidth !== undefined) {
+                container.style.width = container.dataset.originalWidth || '';
+            }
+        });
+    </script>
+</body>
+</html>
