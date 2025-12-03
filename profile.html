@@ -1,52 +1,67 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="/assets/HClogo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="profile.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="profile.css" />
 </head>
 <body>
-    <div class="dashboard-logo">
-        <a href="dashboard.html" title="Go to Home">
-        <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-top-left">
-        </a>
+  <div class="dashboard-logo">
+    <a href="dashboard.html" title="Go to Home">
+      <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-top-left">
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="avatar-wrapper">
+      <img id="current-avatar" src="/assets/girlAvatar.png" alt="Avatar" class="avatar">
+      <button id="edit-avatar-btn" class="ghost-btn">Edit</button>
     </div>
 
-    <div class="container">
-        <div class="avatar-wrapper">
-            <img src="/assets/girlAvatar.png" alt="Avatar" class="avatar">
-        </div>
+    <img src="/assets/name.png" alt="Child Name" class="name-image">
 
-        <img src="assets/name.png" alt="Child Name" class="name-image">
+    <div class="options">
+      <button onclick="playMemoryGame()" class="option-btn">
+        <img src="/assets/icons/memory.png" class="option-icon" width="28" height="28"> Memory Game
+      </button>
 
-        <div class="options">
-    <button onclick="changeFont()" class="option-btn">
-        <img src="/assets/icons/font.png" class="option-icon" width="28px" height="28px">
-        Change Font
-    </button>
+      <button onclick="playFidgetSpinner()" class="option-btn">
+        <img src="/assets/icons/fidget.png" class="option-icon" width="28" height="28"> Fidget Spinner
+      </button>
 
-    <button onclick="playFidgetSpinner()" class="option-btn">
-        <img src="/assets/icons/fidget.png" class="option-icon" width="28px" height="28px">
-        Fidget Spinner
-    </button>
+      <button id="edit-avatar-btn-main" class="option-btn">
+        <img src="/assets/icons/edit.webp" class="option-icon" width="28" height="28"> Edit my Avatar
+      </button>
 
-    <button onclick="editAvatar()" class="option-btn">
-        <img src="/assets/icons/edit.webp" class="option-icon" width="28px" height="28px">
-        Edit my Avatar
-    </button>
-
-
-    <button onclick="logout()" class="option-btn">
-        <img src="/assets/icons/logout.webp" class="option-icon" width="28px" height="28px">
-        Logout
-    </button>
-</div>
-
-       
+      <button onclick="logout()" class="option-btn">
+        <img src="/assets/icons/logout.webp" class="option-icon" width="28" height="28"> Logout
+      </button>
     </div>
+  </div>
 
-    <script src="profile.js"></script>
+  <div id="avatar-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-panel" role="document">
+      <header class="modal-header">
+        <h2 id="modal-title">Choose an Avatar</h2>
+        <button id="close-modal" class="close-btn" aria-label="Close">✕</button>
+      </header>
+
+      <p class="modal-sub">Click an image to set it as your avatar</p>
+
+      <div id="avatar-grid" class="avatar-grid" aria-live="polite">
+      </div>
+
+      <footer class="modal-footer">
+        <button id="cancel-modal" class="btn">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
 </body>
 </html>

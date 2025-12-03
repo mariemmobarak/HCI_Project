@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Memory Match - Kids</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-logo">
+            <a href="dashboard.html" title="Go to Dashboard">
+                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
+            </a>
+        </div>
+
+        <img src="/assets/game.png" alt="Game" class="lesson-title-image" style="width: 120%;">
+        <a href="#" id="avatar-link" class="avatar-link" title="User Profile">
+            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+        </a>
+    </header>
+
+      <div class="memory-stats" aria-live="polite">
+        <div class="stat">
+          <div class="stat-label">Moves</div>
+          <div id="moves" class="stat-value">0</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Time</div>
+          <div id="timer" class="stat-value">00:00</div>
+        </div>
+
+        <button id="restartBtn" class="btn restart-btn" aria-label="Restart game">Restart</button>
+      </div>
+    </header>
+
+    <div class="game-area">
+      <div id="overlay" class="overlay hidden" role="status" aria-hidden="true">
+        <div class="overlay-card">
+          <h2 id="overlay-title">Well done!</h2>
+          <p id="overlay-sub">You matched all pairs.</p>
+          <div class="overlay-stats">
+            <div>Moves: <strong id="overlay-moves">0</strong></div>
+            <div>Time: <strong id="overlay-time">00:00</strong></div>
+          </div>
+          <button id="playAgain" class="btn">Play Again</button>
+        </div>
+      </div>
+
+      <div id="game" class="grid" role="grid" aria-label="Memory card grid">
+        <!-- cards injected by JS -->
+      </div>
+    </div>
+
+</div>
+
+  <script src="memory.js"></script>
+</body>
+</html>
