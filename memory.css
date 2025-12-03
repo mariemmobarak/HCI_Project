@@ -16,6 +16,65 @@ body, html {
   -moz-osx-font-smoothing:grayscale;
 }
 
+.dashboard-header {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem; 
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+.dashboard-logo {
+    display: flex;
+    gap: 1rem;
+    height: 7.5rem;
+    margin-top: 10px;
+    position: fixed;
+    left: 20px;
+}
+.dashboard-logo .logo-image {
+    height: 10rem;
+    display: block;
+    object-fit: contain;
+}
+.dashboard-title {
+    margin-left: 30%;
+    margin-top: 30px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--kids-dark);
+    font-size: 3rem;
+
+    text-align: justify;
+}
+.avatar-link {
+    width: 70px;
+    height: 70px;
+    box-sizing: border-box;
+    border: 3px solid var(--kids-dark);
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin: 0;
+    position: fixed;
+    right: 20px;
+}
+.avatar-link:hover {
+    transform: scale(1.05);
+}
+.avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.5) translateY(8%);
+  border-radius: 50%;
+}
+
 .memory-page {
   max-width: 1100px;
   margin: 2.5rem auto;
