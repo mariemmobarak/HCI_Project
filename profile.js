@@ -122,3 +122,95 @@ if (editAvatarBtnTiny) {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.style.display === "flex") closeModal();
 });
+
+/* --- Font dropdown logic --- */
+const fontDropdown = document.getElementById('font-dropdown');
+const fontForm = document.getElementById('font-form');
+const fontToggleBtn = document.getElementById('font-toggle-btn');
+
+function applyFont(name) {
+  // Remove previous classes from both html and body, then add the new one.
+  document.documentElement.classList.remove('font-fredoka','font-inter','font-georgia');
+  document.body.classList.remove('font-fredoka','font-inter','font-georgia');
+  if (name === 'fredoka') {
+    document.documentElement.classList.add('font-fredoka');
+    document.body.classList.add('font-fredoka');
+    document.body.style.fontFamily = "'Fredoka', sans-serif";
+  }
+  if (name === 'inter') {
+    document.documentElement.classList.add('font-inter');
+    document.body.classList.add('font-inter');
+    document.body.style.fontFamily = "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial";
+  }
+  if (name === 'georgia') {
+    document.documentElement.classList.add('font-georgia');
+    document.body.classList.add('font-georgia');
+    document.body.style.fontFamily = "Georgia, 'Times New Roman', serif";
+  }
+  localStorage.setItem('selectedFont', name);
+}
+
+function toggleFontDropdown(btn) {
+  if (!fontDropdown) return;
+  const isActive = fontDropdown.classList.contains('active');
+
+  // Close other dropdowns if any (safe)
+  document.querySelectorAll('.dropdown-content').forEach(d => {
+    if (d !== fontDropdown) {
+      d.classList.remove('active');
+    }
+  });
+
+  if (isActive) {
+    fontDropdown.classList.remove('active');
+    fontDropdown.setAttribute('aria-hidden','true');
+    return;
+  }
+
+  // Insert dropdown after the button so it pushes content down
+  btn.insertAdjacentElement('afterend', fontDropdown);
+  fontDropdown.classList.add('active');
+  fontDropdown.setAttribute('aria-hidden','false');
+}
+
+// apply saved font on load
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('selectedFont');
+  if (saved) applyFont(saved);
+  // set radio if present
+  if (saved) {
+    const r = document.querySelector(`input[name="font"][value="${saved}"]`);
+    if (r) r.checked = true;
+  }
+});
+
+// handle form submit
+fontForm?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const selected = document.querySelector('input[name="font"]:checked');
+  if (selected) {
+    // apply immediately so user sees the change, persist and then reload
+    applyFont(selected.value);
+    // close dropdown briefly then reload so all elements reset with the new font
+    setTimeout(() => {
+      fontDropdown.classList.remove('active');
+      fontDropdown.setAttribute('aria-hidden','true');
+      // reload to ensure every element that had inline or specific font rules picks up the new class
+      location.reload();
+    }, 180);
+  }
+});
+
+// cancel button
+document.getElementById('cancel-font')?.addEventListener('click', () => {
+  fontDropdown.classList.remove('active');
+  fontDropdown.setAttribute('aria-hidden','true');
+});
+
+// clicking outside closes the dropdown (but not the avatar modal)
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#font-dropdown') && !e.target.closest('#font-toggle-btn')) {
+    fontDropdown?.classList.remove('active');
+    fontDropdown?.setAttribute('aria-hidden','true');
+  }
+});

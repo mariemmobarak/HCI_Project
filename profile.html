@@ -25,6 +25,32 @@
     <img src="/assets/name.png" alt="Child Name" class="name-image">
 
     <div class="options">
+      <button class="option-btn" id="font-toggle-btn" onclick="toggleFontDropdown(this)">
+        <img src="/assets/icons/font.png" class="option-icon" width="28" height="28"> Change Font
+      </button>
+
+      <div id="font-dropdown" class="dropdown-content" aria-hidden="true">
+        <h3>Choose a Font</h3>
+        <form id="font-form">
+          <div class="form-group">
+            <input type="radio" id="font-fredoka" name="font" value="fredoka">
+            <label for="font-fredoka">Fredoka (rounded)</label>
+          </div>
+          <div class="form-group">
+            <input type="radio" id="font-inter" name="font" value="inter">
+            <label for="font-inter">Inter (system UI)</label>
+          </div>
+          <div class="form-group">
+            <input type="radio" id="font-georgia" name="font" value="georgia">
+            <label for="font-georgia">Georgia (serif)</label>
+          </div>
+          <div class="button-group" style="margin-top:.75rem;">
+            <button type="submit" class="btn">Apply</button>
+            <button type="button" id="cancel-font" class="btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+
       <button onclick="playMemoryGame()" class="option-btn">
         <img src="/assets/icons/memory.png" class="option-icon" width="28" height="28"> Memory Game
       </button>

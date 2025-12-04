@@ -143,6 +143,43 @@ body {
     object-fit: contain;
 }
 
+/* Flow dropdown used for font selection */
+.dropdown-content {
+  display: none;
+  position: static; /* flow in document so it pushes content */
+  background: white;
+  border: 3px solid var(--kids-dark);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 12px 0 rgba(0,0,0,0.06);
+  width: calc(100% - 40px);
+  margin: 6px auto 0 auto;
+  box-sizing: border-box;
+  text-align: left;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 260ms ease, opacity 180ms ease, transform 200ms ease;
+}
+.dropdown-content.active {
+  display: block;
+  max-height: 420px; /* allow smooth open */
+  opacity: 1;
+}
+.dropdown-content h3 { margin: 0 0 8px 0; font-size: 1rem; }
+.dropdown-content .form-group { display:flex; align-items:center; gap:8px; margin:8px 0; }
+
+/* font utility classes */
+.font-fredoka, .font-fredoka * {
+  font-family: 'Fredoka', sans-serif !important;
+}
+.font-inter, .font-inter * {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial !important;
+}
+.font-georgia, .font-georgia * {
+  font-family: Georgia, 'Times New Roman', serif !important;
+}
+
 
 /* ---------- Avatar modal styles (append) ---------- */
 .modal {

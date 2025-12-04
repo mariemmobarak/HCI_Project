@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             score++;
             feedbackMessage.textContent = 'Correct!';
             feedbackMessage.classList.add('feedback-correct');
-            const hooraySound = new Audio('/assets/hooray.mp3');
+            const hooraySound = new Audio('/assets/hooray.m4a');
             hooraySound.play().catch(e => console.log('Audio playback failed:', e));
             setTimeout(nextQuestion, 800);
         } else {
