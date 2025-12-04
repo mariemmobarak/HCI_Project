@@ -9,7 +9,6 @@ const intervalMs = 4000;
 let timer = null;
 
 
-// create dots
 slides.forEach((s,i)=>{
 const b = document.createElement('button');
 b.setAttribute('role','tab');
@@ -38,7 +37,6 @@ prevBtn?.addEventListener('click', ()=> goTo(current-1));
 nextBtn?.addEventListener('click', ()=> goTo(current+1));
 
 
-// keyboard on carousel container
 const carousel = document.getElementById('lesson-content');
 carousel?.addEventListener('keydown', (e)=>{
 if (e.key === 'ArrowLeft') prevBtn?.click();
@@ -57,7 +55,6 @@ carousel?.addEventListener('focusin', stop);
 carousel?.addEventListener('focusout', start);
 
 
-// init
 show(0);
 start();
 });
@@ -66,13 +63,14 @@ let currentQuestionIndex = 0;
 let score = 0;
 const TOTAL_QUESTIONS = 5;
 let speakerTimeout = null;
+let listenTimeout = null; 
 
 const quizQuestions = [
-    { num1: 3, num2: 4, answer: 12 },
-    { num1: 7, num2: 2, answer: 14 },
-    { num1: 5, num2: 5, answer: 25 },
-    { num1: 9, num2: 1, answer: 9 },
-    { num1: 6, num2: 3, answer: 18 }
+    { num1: 3, num2: 4, answer: 12, audio: "/assets/audio/q1.mp3" },
+    { num1: 7, num2: 2, answer: 14 , audio: "/assets/audio/q2.webm"},
+    { num1: 5, num2: 5, answer: 25, audio: "/assets/audio/q3.webm" },
+    { num1: 9, num2: 1, answer: 9 , audio: "/assets/audio/q4.webm"},
+    { num1: 6, num2: 3, answer: 18, audio: "/assets/audio/q5.webm" }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,12 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (playSoundButton) {
         playSoundButton.addEventListener('click', () => {
+            playQuestionAudio();
             showSpeakerIndicator();
         });
     }
+
+
     if (listenButton) {
         listenButton.addEventListener('click', () => {
             showListenerIndicator();
+            clearListenTimeout();
+            listenTimeout = setTimeout(() => {
+                const answerInput = document.getElementById('answer-input');
+                const question = quizQuestions[currentQuestionIndex];
+                if (answerInput && question) {
+                    answerInput.value = String(question.answer);
+                    // place cursor at end and focus
+                    answerInput.focus();
+                    answerInput.setSelectionRange(answerInput.value.length, answerInput.value.length);
+                }
+            }, 1500);
         });
     }
     
@@ -135,7 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
             speakerIndicator.classList.add('hidden');
         }, 10000);
     }
-
+    function playQuestionAudio() {
+        const audioFile = quizQuestions[currentQuestionIndex].audio;
+        const questionAudio = new Audio(audioFile);
+        questionAudio.play().catch(e => console.log("Audio playback failed:", e));
+    }
     function showListenerIndicator() {
         if (!listenIndicator) return;
         
@@ -148,6 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
         speakerTimeout = setTimeout(() => {
             listenIndicator.classList.add('hidden');
         }, 3000);
+    }
+
+    function clearListenTimeout() {
+        if (listenTimeout) {
+            clearTimeout(listenTimeout);
+            listenTimeout = null;
+        }
     }
 
     function startQuiz() {
@@ -167,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderQuestion() {
+        clearListenTimeout();
+
         const question = quizQuestions[currentQuestionIndex];
         const progressFill = document.getElementById('progress-fill');
         const progressText = document.getElementById('progress-text');
@@ -184,6 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkAnswer() {
+        clearListenTimeout();
+
         const answerInput = document.getElementById('answer-input');
         const feedbackMessage = document.getElementById('feedback-message');
         const userAnswer = parseInt(answerInput.value.trim(), 10);
@@ -212,6 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function nextQuestion() {
+        clearListenTimeout();
+
         currentQuestionIndex++;
         if (currentQuestionIndex < TOTAL_QUESTIONS) {
             renderQuestion();
@@ -268,6 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetQuiz() {
+        clearListenTimeout();
+
         document.getElementById('result-screen').classList.add('hidden');
         document.getElementById('lesson-content').classList.remove('hidden');
         
