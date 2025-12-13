@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const avatarLink = document.querySelector('.avatar-link');
-    if (avatarLink) {
-        avatarLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = 'profile.html';
-        });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const avatarLink = document.querySelector(".avatar-link");
+  if (avatarLink) {
+    avatarLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "profile.html";
+    });
+  }
 });
 
 const images = [
@@ -18,7 +18,6 @@ const images = [
   "/assets/memory/elf.png",
 ];
 
-
 const gameEl = document.getElementById("game");
 const movesEl = document.getElementById("moves");
 const timerEl = document.getElementById("timer");
@@ -30,7 +29,7 @@ const overlayMoves = document.getElementById("overlay-moves");
 const overlayTime = document.getElementById("overlay-time");
 const playAgain = document.getElementById("playAgain");
 
-let deck = [];            
+let deck = [];
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
@@ -65,8 +64,8 @@ function buildDeck() {
   // duplicate images to create pairs, then shuffle
   const pairs = images.slice(); // copy
   deck = pairs.concat(pairs).map((src, idx) => ({
-    id: idx + "-" + Math.random().toString(36).slice(2,7),
-    src
+    id: idx + "-" + Math.random().toString(36).slice(2, 7),
+    src,
   }));
   deck = shuffle(deck);
 }
@@ -132,7 +131,6 @@ function onCardClick(cardEl, card) {
   moves++;
   movesEl.textContent = moves;
   checkForMatch();
-
 }
 
 function flipCard(cardEl) {
@@ -152,15 +150,14 @@ function unflipCards(a, b) {
 }
 
 function checkForMatch() {
-
   const isMatch = firstCard.card.src === secondCard.card.src;
   if (isMatch) {
     setTimeout(() => {
-        markMatched(firstCard.cardEl);
-        markMatched(secondCard.cardEl);
-        matchedCount += 2;
-        resetTurn();
-        checkEnd();
+      markMatched(firstCard.cardEl);
+      markMatched(secondCard.cardEl);
+      matchedCount += 2;
+      resetTurn();
+      checkEnd();
     }, 500);
   } else {
     unflipCards(firstCard.cardEl, secondCard.cardEl);
@@ -212,6 +209,38 @@ restartBtn.addEventListener("click", () => {
 
 playAgain.addEventListener("click", () => {
   initGame();
+});
+
+// Help modal functionality
+const helpBtn = document.getElementById("help-btn");
+const helpModal = document.getElementById("help-modal");
+const closeHelp = document.getElementById("close-help");
+
+if (helpBtn) {
+  helpBtn.addEventListener("click", function () {
+    helpModal.style.display = "flex";
+  });
+}
+
+if (closeHelp) {
+  closeHelp.addEventListener("click", function () {
+    helpModal.style.display = "none";
+  });
+}
+
+if (helpModal) {
+  helpModal.addEventListener("click", function (e) {
+    if (e.target === helpModal) {
+      helpModal.style.display = "none";
+    }
+  });
+}
+
+// Close help modal with Escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && helpModal && helpModal.style.display === "flex") {
+    helpModal.style.display = "none";
+  }
 });
 
 // Initialize on load

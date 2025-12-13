@@ -1,93 +1,246 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Profile</title>
-  <link rel="stylesheet" href="profile.css" />
-</head>
-<body>
-  <div class="dashboard-logo">
-    <a href="dashboard.html" title="Go to Home">
-      <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-top-left">
-    </a>
-  </div>
-
-  <div class="container">
-    <div class="avatar-wrapper">
-      <img id="current-avatar" src="/assets/girlAvatar.png" alt="Avatar" class="avatar">
-      <button id="edit-avatar-btn" class="ghost-btn">Edit</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css" />
+    <style>
+      .help-button {
+        position: fixed;
+        top: 20px;
+        right: 40px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #0a92aab4;
+        color: white;
+        border: 3px solid #1a4046;
+        font-size: 1.5rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 0 #1a4046;
+        transition: transform 0.2s, box-shadow 0.2s;
+        z-index: 1000;
+      }
+      .help-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 0 #1a4046;
+      }
+      .help-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+      .help-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 4px solid #1a4046;
+        box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.9);
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      .help-content h2 {
+        color: #1a4046;
+        margin-top: 0;
+      }
+      .help-content ul {
+        text-align: left;
+        line-height: 1.8;
+      }
+      .close-help {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #1a4046;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-logo">
+      <a href="dashboard.html" title="Go to Home">
+        <img
+          src="/assets/HClogo.png"
+          alt="Kids App Logo"
+          class="logo-top-left"
+        />
+      </a>
     </div>
 
-    <img src="/assets/name.png" alt="Child Name" class="name-image">
-
-    <div class="options">
-      <button class="option-btn" id="font-toggle-btn" onclick="toggleFontDropdown(this)">
-        <img src="/assets/icons/font.png" class="option-icon" width="28" height="28"> Change Font
-      </button>
-
-      <div id="font-dropdown" class="dropdown-content" aria-hidden="true">
-        <h3>Choose a Font</h3>
-        <form id="font-form">
-          <div class="form-group">
-            <input type="radio" id="font-fredoka" name="font" value="fredoka">
-            <label for="font-fredoka">Fredoka</label>
-          </div>
-          <div class="form-group">
-            <input type="radio" id="font-inter" name="font" value="inter">
-            <label for="font-inter">Inter</label>
-          </div>
-          <div class="form-group">
-            <input type="radio" id="font-georgia" name="font" value="georgia">
-            <label for="font-georgia">Georgia</label>
-          </div>
-          <div class="button-group" style="margin-top:.75rem;">
-            <button type="submit" class="btn">Apply</button>
-            <button type="button" id="cancel-font" class="btn">Cancel</button>
-          </div>
-        </form>
+    <div class="container">
+      <div class="avatar-wrapper">
+        <img
+          id="current-avatar"
+          src="/assets/girlAvatar.png"
+          alt="Avatar"
+          class="avatar"
+        />
+        <button id="edit-avatar-btn" class="ghost-btn">Edit</button>
       </div>
 
-      <button onclick="playMemoryGame()" class="option-btn">
-        <img src="/assets/icons/memory.png" class="option-icon" width="28" height="28"> Memory Game
-      </button>
+      <img src="/assets/name.png" alt="Child Name" class="name-image" />
 
-      <button onclick="playFidgetSpinner()" class="option-btn">
-        <img src="/assets/icons/fidget.png" class="option-icon" width="28" height="28"> Fidget Spinner
-      </button>
+      <div class="options">
+        <button
+          class="option-btn"
+          id="font-toggle-btn"
+          onclick="toggleFontDropdown(this)"
+        >
+          <img
+            src="/assets/icons/font.png"
+            class="option-icon"
+            width="28"
+            height="28"
+          />
+          Change Font
+        </button>
 
-      <button id="edit-avatar-btn-main" class="option-btn">
-        <img src="/assets/icons/edit.webp" class="option-icon" width="28" height="28"> Edit my Avatar
-      </button>
+        <div id="font-dropdown" class="dropdown-content" aria-hidden="true">
+          <h3>Choose a Font</h3>
+          <form id="font-form">
+            <div class="form-group">
+              <input
+                type="radio"
+                id="font-fredoka"
+                name="font"
+                value="fredoka"
+              />
+              <label for="font-fredoka">Fredoka</label>
+            </div>
+            <div class="form-group">
+              <input type="radio" id="font-inter" name="font" value="inter" />
+              <label for="font-inter">Inter</label>
+            </div>
+            <div class="form-group">
+              <input
+                type="radio"
+                id="font-georgia"
+                name="font"
+                value="georgia"
+              />
+              <label for="font-georgia">Georgia</label>
+            </div>
+            <div class="button-group" style="margin-top: 0.75rem">
+              <button type="submit" class="btn">Apply</button>
+              <button type="button" id="cancel-font" class="btn">Cancel</button>
+            </div>
+          </form>
+        </div>
 
-      <button onclick="logout()" class="option-btn">
-        <img src="/assets/icons/logout.webp" class="option-icon" width="28" height="28"> Logout
-      </button>
-    </div>
-  </div>
+        <button onclick="playMemoryGame()" class="option-btn">
+          <img
+            src="/assets/icons/memory.png"
+            class="option-icon"
+            width="28"
+            height="28"
+          />
+          Memory Game
+        </button>
 
-  <div id="avatar-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-    <div class="modal-backdrop" id="modal-backdrop"></div>
-    <div class="modal-panel" role="document">
-      <header class="modal-header">
-        <h2 id="modal-title">Choose an Avatar</h2>
-        <button id="close-modal" class="close-btn" aria-label="Close">✕</button>
-      </header>
+        <button onclick="playFidgetSpinner()" class="option-btn">
+          <img
+            src="/assets/icons/fidget.png"
+            class="option-icon"
+            width="28"
+            height="28"
+          />
+          Fidget Spinner
+        </button>
 
-      <p class="modal-sub">Click an image to set it as your avatar</p>
+        <button id="edit-avatar-btn-main" class="option-btn">
+          <img
+            src="/assets/icons/edit.webp"
+            class="option-icon"
+            width="28"
+            height="28"
+          />
+          Edit my Avatar
+        </button>
 
-      <div id="avatar-grid" class="avatar-grid" aria-live="polite">
+        <button onclick="logout()" class="option-btn">
+          <img
+            src="/assets/icons/logout.webp"
+            class="option-icon"
+            width="28"
+            height="28"
+          />
+          Logout
+        </button>
       </div>
-
-      <footer class="modal-footer">
-        <button id="cancel-modal" class="btn">Cancel</button>
-      </footer>
     </div>
-  </div>
 
-  <script src="profile.js"></script>
-</body>
+    <div
+      id="avatar-modal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-panel" role="document">
+        <header class="modal-header">
+          <h2 id="modal-title">Choose an Avatar</h2>
+          <button id="close-modal" class="close-btn" aria-label="Close">
+            ✕
+          </button>
+        </header>
+
+        <p class="modal-sub">Click an image to set it as your avatar</p>
+
+        <div id="avatar-grid" class="avatar-grid" aria-live="polite"></div>
+
+        <footer class="modal-footer">
+          <button id="cancel-modal" class="btn">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Help Button -->
+    <button class="help-button" id="help-btn" aria-label="Help">?</button>
+
+    <!-- Help Modal -->
+    <div class="help-modal" id="help-modal">
+      <div class="help-content">
+        <span class="close-help" id="close-help">&times;</span>
+        <h2>Profile Help</h2>
+        <ul>
+          <li>
+            <strong>Change Font:</strong> Click to choose between Fredoka,
+            Inter, or Georgia fonts.
+          </li>
+          <li>
+            <strong>Edit Avatar:</strong> Click to select a new avatar image for
+            your profile.
+          </li>
+          <li>
+            <strong>Memory Game:</strong> Play a fun card-matching game to
+            practice memory skills!
+          </li>
+          <li>
+            <strong>Fidget Spinner:</strong> Click to play with a virtual fidget
+            spinner.
+          </li>
+          <li>
+            <strong>Logout:</strong> Click to safely log out of your account.
+          </li>
+          <li>
+            <strong>Return Home:</strong> Click the logo (top left) to go back
+            to the dashboard.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="profile.js"></script>
+  </body>
 </html>

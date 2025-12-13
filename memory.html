@@ -6,6 +6,66 @@
   <title>Memory Match - Kids</title>
   <link rel="stylesheet" href="memory.css" />
   <link rel="stylesheet"href="styles.css" />
+  <style>
+    .help-button {
+      position: fixed;
+      top: 20px;
+      right: 120px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0a92aab4;
+      color: white;
+      border: 3px solid #1a4046;
+      font-size: 1.5rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 0 #1a4046;
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 1000;
+    }
+    .help-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 0 #1a4046;
+    }
+    .help-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .help-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 4px solid #1a4046;
+      box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.9);
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .help-content h2 {
+      color: #1a4046;
+      margin-top: 0;
+    }
+    .help-content ul {
+      text-align: left;
+      line-height: 1.8;
+    }
+    .close-help {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #1a4046;
+      font-weight: 800;
+    }
+  </style>
 </head>
 <body>
     <header class="dashboard-header">
@@ -55,6 +115,26 @@
     </div>
 
 </div>
+
+  <!-- Help Button -->
+  <button class="help-button" id="help-btn" aria-label="Help">?</button>
+
+  <!-- Help Modal -->
+  <div class="help-modal" id="help-modal">
+    <div class="help-content">
+      <span class="close-help" id="close-help">&times;</span>
+      <h2>Memory Game Help</h2>
+      <ul>
+        <li><strong>How to Play:</strong> Click on cards to flip them and find matching pairs!</li>
+        <li><strong>Moves:</strong> Each pair of card flips counts as one move.</li>
+        <li><strong>Timer:</strong> Try to match all pairs as quickly as possible!</li>
+        <li><strong>Match:</strong> When two cards match, they stay flipped.</li>
+        <li><strong>Restart:</strong> Click the "Restart" button to play again.</li>
+        <li><strong>Tip:</strong> Remember where cards are to match them faster!</li>
+        <li><strong>Return:</strong> Click the logo (top left) to go back to dashboard.</li>
+      </ul>
+    </div>
+  </div>
 
   <script src="memory.js"></script>
 </body>

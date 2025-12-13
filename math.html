@@ -1,142 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="/assets/HClogo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/HClogo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Math - Multiplication</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .carousel { position: relative; max-width: 900px; margin: 0 auto; }
-        .slides { position: relative; height: 360px; overflow: hidden; border-radius: 12px; }
-        .slide { position: fixed; inset: 0; opacity: 0; transition: opacity .5s ease; display: flex; align-items:center; justify-content:center; }
-        .slide img { width: 60%; height: 60%; object-fit: contain; display: block; }
-        .slide[aria-hidden="false"] { opacity: 1; z-index: 1; }
-        .carousel-controls { position: absolute; top: 110%; left: 0; right: 0; display:flex; justify-content:space-between; transform: translateY(-50%); pointer-events: none; }
-        .carousel-controls button { pointer-events: auto; background: rgba(0,0,0,.45); border: none; color: #fff; width:40px; height:40px; border-radius:999px; cursor:pointer; }
-        .carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 20px; display:flex; gap:8px; }
-        .carousel-dots button { width:10px; height:10px; border-radius:50%; border: none; background: rgba(255,255,255,.5); cursor:pointer; }
-        .carousel-dots button[aria-pressed="true"] { background: #fff; }
-        @media (max-width:700px) { .slides { height: 220px; } }
+      .help-button {
+        position: fixed;
+        top: 20px;
+        right: 120px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--kids-accent);
+        color: white;
+        border: 3px solid var(--kids-dark);
+        font-size: 1.5rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 0 var(--kids-dark);
+        transition: transform 0.2s, box-shadow 0.2s;
+        z-index: 1000;
+      }
+      .help-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 0 var(--kids-dark);
+      }
+      .help-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+      .help-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 4px solid var(--kids-dark);
+        box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.9);
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      .help-content h2 {
+        color: var(--kids-dark);
+        margin-top: 0;
+      }
+      .help-content ul {
+        text-align: left;
+        line-height: 1.8;
+      }
+      .close-help {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--kids-dark);
+        font-weight: 800;
+      }
+      .carousel {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .slides {
+        position: relative;
+        height: 360px;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+      .slide {
+        position: fixed;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slide img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+        display: block;
+      }
+      .slide[aria-hidden="false"] {
+        opacity: 1;
+        z-index: 1;
+      }
+      .carousel-controls {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      .carousel-controls button {
+        pointer-events: auto;
+        background: rgba(0, 0, 0, 0.45);
+        border: none;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .carousel-dots {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        display: flex;
+        gap: 8px;
+      }
+      .carousel-dots button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+      }
+      .carousel-dots button[aria-pressed="true"] {
+        background: #fff;
+      }
+      @media (max-width: 700px) {
+        .slides {
+          height: 220px;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header class="dashboard-header">
-        <div class="dashboard-logo">
-            <a href="dashboard.html" title="Go to Dashboard">
-                <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
-            </a>
-        </div>
-
-        <img src="/assets/multiplicationImage.png" alt="Multiplication Title" class="lesson-title-image">
-        
-        <a href="#" class="avatar-link" title="User Profile">
-            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+      <div class="dashboard-logo">
+        <a href="dashboard.html" title="Go to Dashboard">
+          <img
+            src="/assets/HClogo.png"
+            alt="Kids App Logo"
+            class="logo-image"
+          />
         </a>
+      </div>
+
+      <img
+        src="/assets/multiplicationImage.png"
+        alt="Multiplication Title"
+        class="lesson-title-image"
+      />
+
+      <a href="#" class="avatar-link" title="User Profile">
+        <img
+          src="/assets/girlAvatar.png"
+          alt="User Avatar"
+          class="avatar-img"
+        />
+      </a>
     </header>
 
     <div class="main-lesson-area">
-        <!-- Carousel placed inside the lesson content area. Replace or add images in the slides below. -->
-        <div id="lesson-content" class="lesson-content-wrapper carousel" tabindex="0" aria-roledescription="carousel">
-            <div class="slides" id="slides">
-                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" data-index="0" aria-hidden="false">
-                    <img src="/assets/mult.png" alt="Multiplication Lesson Content">
-                </div>
-                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" data-index="1" aria-hidden="true">
-                    <img src="/assets/mult2.png" alt="Multiplication Example 2">
-                </div>
-                <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" data-index="2" aria-hidden="true">
-                    <img src="/assets/mult3.png" alt="Multiplication Example 3">
-                </div>
-            </div>
-
-
-            <div class="carousel-controls">
-                <button id="carousel-prev" aria-label="Previous slide">◀</button>
-                <button id="carousel-next" aria-label="Next slide">▶</button>
-            </div>
-
-
-            <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Slide controls"></div>
-        </div>
-            
-
-        <button id="take-quiz-button" class="read-along-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="ml-2">
-            <rect x="3" y="3" width="14" height="14" rx="2" />
-            <path d="M10 8a2 2 0 1 1 2 2c-.5.5-1 .9-1 2" />
-            <circle cx="10" cy="14" r="1" />
-            </svg>
-            Take Quiz?
-        </button>
-
-        <div id="quiz-container" class="quiz-container hidden" inert>
-            <div class="progress-wrapper">
-                <div class="progress-text" id="progress-text">Question 1 of 5</div>
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
-                </div>
-            </div>
-
-            <div class="question-card">
-                <div class="question-text-container" style="display: flex; align-items: center; gap: 8px; justify-content: space-between;">
-                    <button id="record-answer-button" aria-label="Record answer" style="background: none; border: none; cursor: pointer;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3z"></path>
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                            <line x1="12" y1="19" x2="12" y2="23"></line>
-                            <line x1="8" y1="23" x2="16" y2="23"></line>
-                        </svg>
-                    </button>
-
-                    <div id="question-text" class="question-text">3 × 4 = ?</div>
-                    <button id="play-sound-button" aria-label="Play question" style="background: none; border: none; cursor: pointer;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                            <path d="M19.07 4.93a9 9 0 0 1 0 14.14"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="answer-input-container">
-                    <input id="answer-input" type="number" inputmode="numeric" aria-label="Answer" 
-                        placeholder="Type your answer" class="answer-input">
-                    <button id="submit-answer-button" class="quiz-button-submit" aria-label="Submit answer">Submit</button>
-                </div>
-
-                <div id="feedback-message" class="feedback hidden" role="status" aria-live="polite"></div>
-            </div>
+      <!-- Carousel placed inside the lesson content area. Replace or add images in the slides below. -->
+      <div
+        id="lesson-content"
+        class="lesson-content-wrapper carousel"
+        tabindex="0"
+        aria-roledescription="carousel"
+      >
+        <div class="slides" id="slides">
+          <div
+            class="slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 1 of 3"
+            data-index="0"
+            aria-hidden="false"
+          >
+            <img src="/assets/mult.png" alt="Multiplication Lesson Content" />
+          </div>
+          <div
+            class="slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 2 of 3"
+            data-index="1"
+            aria-hidden="true"
+          >
+            <img src="/assets/mult2.png" alt="Multiplication Example 2" />
+          </div>
+          <div
+            class="slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 3 of 3"
+            data-index="2"
+            aria-hidden="true"
+          >
+            <img src="/assets/mult3.png" alt="Multiplication Example 3" />
+          </div>
         </div>
 
-        <div id="result-screen" class="result-screen hidden" aria-hidden="true">
-            <div class="result-content">
-                <div class="grade-display-container">
-                    Grade: <span id="grade-display" class="grade-display" aria-live="polite"></span>
-                </div>
-                <div id="score-summary" class="score-summary"></div>
-                <div id="result-message" class="result-message"></div>
-                <div>
-                    <button id="retake-quiz-button" class="quiz-button hidden" aria-label="Retake quiz">Retake Lesson</button>
-                </div>
-            </div>
-        </div>
-        <div id="custom-alert-box" style="display: none;"></div>
-        <a href="chatbot.html" class="chatbot-button">
-            <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon">
-        </a>
-        <div id="speaker-indicator" class="speaker-indicator hidden">
-            <img src="/assets/speaking.png" alt="Speaking" class="speaker-indicator-img">
+        <div class="carousel-controls">
+          <button id="carousel-prev" aria-label="Previous slide">◀</button>
+          <button id="carousel-next" aria-label="Next slide">▶</button>
         </div>
 
-        <div id="listener-indicator" class="listener-indicator hidden">
-            <img src="/assets/listening.png" alt="Speaking" class="listener-indicator-img">
+        <div
+          class="carousel-dots"
+          id="carousel-dots"
+          role="tablist"
+          aria-label="Slide controls"
+        ></div>
+      </div>
+
+      <button id="take-quiz-button" class="read-along-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-2"
+        >
+          <rect x="3" y="3" width="14" height="14" rx="2" />
+          <path d="M10 8a2 2 0 1 1 2 2c-.5.5-1 .9-1 2" />
+          <circle cx="10" cy="14" r="1" />
+        </svg>
+        Take Quiz?
+      </button>
+
+      <div id="quiz-container" class="quiz-container hidden" inert>
+        <div class="progress-wrapper">
+          <div class="progress-text" id="progress-text">Question 1 of 5</div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
         </div>
+
+        <div class="question-card">
+          <div
+            class="question-text-container"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              justify-content: space-between;
+            "
+          >
+            <button
+              id="record-answer-button"
+              aria-label="Record answer"
+              style="background: none; border: none; cursor: pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3z"
+                ></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </button>
+
+            <div id="question-text" class="question-text">3 × 4 = ?</div>
+            <button
+              id="play-sound-button"
+              aria-label="Play question"
+              style="background: none; border: none; cursor: pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a9 9 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="answer-input-container">
+            <input
+              id="answer-input"
+              type="number"
+              inputmode="numeric"
+              aria-label="Answer"
+              placeholder="Type your answer"
+              class="answer-input"
+            />
+            <button
+              id="submit-answer-button"
+              class="quiz-button-submit"
+              aria-label="Submit answer"
+            >
+              Submit
+            </button>
+          </div>
+
+          <div
+            id="feedback-message"
+            class="feedback hidden"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </div>
+      </div>
+
+      <div id="result-screen" class="result-screen hidden" aria-hidden="true">
+        <div class="result-content">
+          <div class="grade-display-container">
+            Grade:
+            <span
+              id="grade-display"
+              class="grade-display"
+              aria-live="polite"
+            ></span>
+          </div>
+          <div id="score-summary" class="score-summary"></div>
+          <div id="result-message" class="result-message"></div>
+          <div>
+            <button
+              id="retake-quiz-button"
+              class="quiz-button hidden"
+              aria-label="Retake quiz"
+            >
+              Retake Lesson
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="custom-alert-box" style="display: none"></div>
+      <a href="chatbot.html" class="chatbot-button">
+        <img src="/assets/chatbot.webp" alt="Chatbot" class="chatbot-icon" />
+      </a>
+      <div id="speaker-indicator" class="speaker-indicator hidden">
+        <img
+          src="/assets/speaking.png"
+          alt="Speaking"
+          class="speaker-indicator-img"
+        />
+      </div>
+
+      <div id="listener-indicator" class="listener-indicator hidden">
+        <img
+          src="/assets/listening.png"
+          alt="Speaking"
+          class="listener-indicator-img"
+        />
+      </div>
     </div>
-   
+
+    <!-- Help Button -->
+    <button class="help-button" id="help-btn" aria-label="Help">?</button>
+
+    <!-- Help Modal -->
+    <div class="help-modal" id="help-modal">
+      <div class="help-content">
+        <span class="close-help" id="close-help">&times;</span>
+        <h2>Math Lesson Help</h2>
+        <ul>
+          <li>
+            <strong>Lesson Slides:</strong> Use ◀ ▶ buttons or arrow keys to
+            navigate through multiplication lessons.
+          </li>
+          <li>
+            <strong>Take Quiz:</strong> Click the "Take Quiz?" button to test
+            your knowledge!
+          </li>
+          <li>
+            <strong>Speaker Button 🔊:</strong> Click to hear the question read
+            aloud.
+          </li>
+          <li>
+            <strong>Microphone Button 🎤:</strong> Click to record your voice
+            answer (demo feature).
+          </li>
+          <li>
+            <strong>Type Your Answer:</strong> Enter numbers in the box and
+            press Enter or click Submit.
+          </li>
+          <li>
+            <strong>Progress Bar:</strong> Shows which question you're on (1 of
+            5).
+          </li>
+          <li>
+            <strong>Scoring:</strong> Get A+ for 80%+, B for 60%+, C otherwise.
+            You can retake!
+          </li>
+          <li>
+            <strong>Chatbot:</strong> Click the chatbot icon for extra help
+            anytime.
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <script src="math.js"></script>
-</body>
+  </body>
 </html>

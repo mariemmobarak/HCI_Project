@@ -1,168 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/assets/HClogo.png">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/HClogo.png" />
     <title>Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .chat-container {
-            width: 100%;
-            max-width: 600px;
-            height: 70vh;
-            background: white;
-            border: 4px solid var(--kids-dark);
-            border-radius: 1rem;
-            box-shadow: 10px 10px 0 0 var(--kids-dark);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            margin-top: -2rem;
-        }
+      .help-button {
+        position: fixed;
+        top: 20px;
+        right: 120px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--kids-accent);
+        color: white;
+        border: 3px solid var(--kids-dark);
+        font-size: 1.5rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 0 var(--kids-dark);
+        transition: transform 0.2s, box-shadow 0.2s;
+        z-index: 1000;
+      }
+      .help-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 0 var(--kids-dark);
+      }
+      .help-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+      .help-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 4px solid var(--kids-dark);
+        box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.9);
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      .help-content h2 {
+        color: var(--kids-dark);
+        margin-top: 0;
+      }
+      .help-content ul {
+        text-align: left;
+        line-height: 1.8;
+      }
+      .close-help {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--kids-dark);
+        font-weight: 800;
+      }
+      .chat-container {
+        width: 100%;
+        max-width: 600px;
+        height: 70vh;
+        background: white;
+        border: 4px solid var(--kids-dark);
+        border-radius: 1rem;
+        box-shadow: 10px 10px 0 0 var(--kids-dark);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: -2rem;
+      }
 
-        .chat-header {
-            background: var(--kids-accent);
-            color: white;
-            padding: 1rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-align: center;
-            border-bottom: 4px solid var(--kids-dark);
-        }
+      .chat-header {
+        background: var(--kids-accent);
+        color: white;
+        padding: 1rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-align: center;
+        border-bottom: 4px solid var(--kids-dark);
+      }
 
-        .chat-messages {
-            flex-grow: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background: var(--kids-blue);
-        }
+      .chat-messages {
+        flex-grow: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        background: var(--kids-blue);
+      }
 
-        .message {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 0.75rem;
-        }
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        gap: 0.75rem;
+      }
 
-        .message.bot .bubble {
-            background: white;
-            border: 3px solid var(--kids-dark);
-        }
+      .message.bot .bubble {
+        background: white;
+        border: 3px solid var(--kids-dark);
+      }
 
-        .message.child {
-            flex-direction: row-reverse;
-        }
+      .message.child {
+        flex-direction: row-reverse;
+      }
 
-        .message.child .bubble {
-            background: var(--kids-accent);
-            color: white;
-            border: 3px solid var(--kids-dark);
-        }
+      .message.child .bubble {
+        background: var(--kids-accent);
+        color: white;
+        border: 3px solid var(--kids-dark);
+      }
 
-        .bubble {
-            padding: 0.75rem 1rem;
-            border-radius: 1rem;
-            max-width: 70%;
-            font-weight: 600;
-            line-height: 1.3;
-            box-shadow: 4px 4px 0 var(--kids-dark);
-        }
+      .bubble {
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        font-weight: 600;
+        line-height: 1.3;
+        box-shadow: 4px 4px 0 var(--kids-dark);
+      }
 
-        .avatar {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 3px solid var(--kids-dark);
-            object-fit: cover;
-        }
+      .avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 3px solid var(--kids-dark);
+        object-fit: cover;
+      }
 
-        .chat-input-area {
-            display: flex;
-            padding: 1rem;
-            background: var(--gray-light);
-            border-top: 3px solid var(--kids-dark);
-            gap: 0.5rem;
-        }
+      .chat-input-area {
+        display: flex;
+        padding: 1rem;
+        background: var(--gray-light);
+        border-top: 3px solid var(--kids-dark);
+        gap: 0.5rem;
+      }
 
-        .chat-input {
-            flex-grow: 1;
-            padding: 0.8rem;
-            border-radius: 0.75rem;
-            border: 2px solid var(--gray-medium);
-            font-size: 1rem;
-        }
+      .chat-input {
+        flex-grow: 1;
+        padding: 0.8rem;
+        border-radius: 0.75rem;
+        border: 2px solid var(--gray-medium);
+        font-size: 1rem;
+      }
 
-        .chat-input:focus {
-            border-color: var(--kids-accent);
-            box-shadow: 0 0 0 4px rgba(0,184,217,0.25);
-            outline: none;
-        }
+      .chat-input:focus {
+        border-color: var(--kids-accent);
+        box-shadow: 0 0 0 4px rgba(0, 184, 217, 0.25);
+        outline: none;
+      }
 
-        .send-button {
-            background: var(--kids-accent);
-            color: white;
-            padding: 0.8rem 1.2rem;
-            font-weight: 800;
-            border-radius: 0.75rem;
-            border: none;
-            box-shadow: 4px 4px 0 var(--kids-dark);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+      .send-button {
+        background: var(--kids-accent);
+        color: white;
+        padding: 0.8rem 1.2rem;
+        font-weight: 800;
+        border-radius: 0.75rem;
+        border: none;
+        box-shadow: 4px 4px 0 var(--kids-dark);
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
 
-        .send-button:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 7px 7px 0 var(--kids-dark);
-        }
+      .send-button:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 7px 7px 0 var(--kids-dark);
+      }
 
-        .send-button:active {
-            transform: translate(0, 0);
-            box-shadow: 3px 3px 0 var(--kids-dark);
-        }
+      .send-button:active {
+        transform: translate(0, 0);
+        box-shadow: 3px 3px 0 var(--kids-dark);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header class="dashboard-header">
-        <div class="dashboard-logo">
-            <a href="dashboard.html" title="Go to Home">
-            <img src="/assets/HClogo.png" alt="Kids App Logo" class="logo-image">
-            </a>
-        </div>
-        <!--TODO-->
-        <img src="/assets/chatbot.PNG" alt="Chatbot Title" class="lesson-title-image">
-
-        <a href="profile.html" id="avatar-link" class="avatar-link" title="User Profile">
-            <img src="/assets/girlAvatar.png" alt="User Avatar" class="avatar-img">
+      <div class="dashboard-logo">
+        <a href="dashboard.html" title="Go to Home">
+          <img
+            src="/assets/HClogo.png"
+            alt="Kids App Logo"
+            class="logo-image"
+          />
         </a>
+      </div>
+      <!--TODO-->
+      <img
+        src="/assets/chatbot.PNG"
+        alt="Chatbot Title"
+        class="lesson-title-image"
+      />
+
+      <a
+        href="profile.html"
+        id="avatar-link"
+        class="avatar-link"
+        title="User Profile"
+      >
+        <img
+          src="/assets/girlAvatar.png"
+          alt="User Avatar"
+          class="avatar-img"
+        />
+      </a>
     </header>
 
-<div class="chat-container">
-    <div class="chat-header">
-        Marioumi’s Chatbot
-    </div>
+    <div class="chat-container">
+      <div class="chat-header">Marioumi’s Chatbot</div>
 
-    <div class="chat-messages" id="chatMessages">
-
+      <div class="chat-messages" id="chatMessages">
         <!-- Initial bot message -->
         <div class="message bot">
-            <img src="assets/chatbot.webp" class="avatar">
-            <div class="bubble">
-                Hello Marioumi, you've learnt a lot today! Do you need any help?
-            </div>
+          <img src="assets/chatbot.webp" class="avatar" />
+          <div class="bubble">
+            Hello Marioumi, you've learnt a lot today! Do you need any help?
+          </div>
         </div>
+      </div>
 
-    </div>
-
-    <div class="chat-input-area">
-        <input id="chatInput" class="chat-input" type="text" placeholder="Type your message...">
+      <div class="chat-input-area">
+        <input
+          id="chatInput"
+          class="chat-input"
+          type="text"
+          placeholder="Type your message..."
+        />
         <button class="send-button" onclick="sendMessage()">Send</button>
+      </div>
     </div>
-</div>
 
+    <!-- Help Button -->
+    <button class="help-button" id="help-btn" aria-label="Help">?</button>
 
-<script>
-    function sendMessage() {
+    <!-- Help Modal -->
+    <div class="help-modal" id="help-modal">
+      <div class="help-content">
+        <span class="close-help" id="close-help">&times;</span>
+        <h2>Chatbot Help</h2>
+        <ul>
+          <li>
+            <strong>Ask Questions:</strong> Type any question about your lessons
+            in the text box.
+          </li>
+          <li>
+            <strong>Send Message:</strong> Click the "Send" button or press
+            Enter to send your message.
+          </li>
+          <li>
+            <strong>Get Help:</strong> The chatbot can explain difficult words,
+            answer questions, or give hints.
+          </li>
+          <li>
+            <strong>Examples:</strong> Try asking "What does [word] mean?" or
+            "Can you explain [topic]?"
+          </li>
+          <li>
+            <strong>Return:</strong> Click the logo (top left) to go back to the
+            dashboard.
+          </li>
+          <li>
+            <strong>Tip:</strong> Be polite and ask clear questions for the best
+            answers!
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function sendMessage() {
         const input = document.getElementById("chatInput");
         const messages = document.getElementById("chatMessages");
         const text = input.value.trim();
@@ -183,17 +294,52 @@
 
         // Bot auto-reply
         setTimeout(() => {
-            const botDiv = document.createElement("div");
-            botDiv.className = "message bot";
-            botDiv.innerHTML = `
+          const botDiv = document.createElement("div");
+          botDiv.className = "message bot";
+          botDiv.innerHTML = `
                 <img src="assets/chatbot.webp" class="avatar">
                 <div class="bubble">No worries! I'm always here to help. The word "giants" means people or creatures that are much, much bigger than normal people.🌟</div>
             `;
-            messages.appendChild(botDiv);
-            messages.scrollTop = messages.scrollHeight;
+          messages.appendChild(botDiv);
+          messages.scrollTop = messages.scrollHeight;
         }, 500);
-    }
-</script>
+      }
 
-</body>
+      // Help modal functionality
+      const helpBtn = document.getElementById("help-btn");
+      const helpModal = document.getElementById("help-modal");
+      const closeHelp = document.getElementById("close-help");
+
+      if (helpBtn) {
+        helpBtn.addEventListener("click", function () {
+          helpModal.style.display = "flex";
+        });
+      }
+
+      if (closeHelp) {
+        closeHelp.addEventListener("click", function () {
+          helpModal.style.display = "none";
+        });
+      }
+
+      if (helpModal) {
+        helpModal.addEventListener("click", function (e) {
+          if (e.target === helpModal) {
+            helpModal.style.display = "none";
+          }
+        });
+      }
+
+      // Close help modal with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "Escape" &&
+          helpModal &&
+          helpModal.style.display === "flex"
+        ) {
+          helpModal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
 </html>
